@@ -78,7 +78,8 @@ This work is part of the research project Semantic Construction Project Engineer
   dcterms:title "Building Product Ontology"@en ;
   vann:preferredNamespacePrefix "bpo" ;
   vann:preferredNamespaceUri bpo: ;
-  owl:priorVersion <https://w3id.org/archive/bpo_V1-1> ;
+  owl:priorVersion <https://w3id.org/bpo/1-1> ;
+  owl:versionIRI <https://w3id.org/bpo/1-2> ;
   owl:versionInfo "1.2" ;
 .
 bpo:Assembly
@@ -130,6 +131,9 @@ bpo:ClassifiedObject
       owl:onProperty schema:additionalType ;
     ] ;
   owl:disjointWith bpo:Entity ;
+  owl:disjointWith bpo:Entry2D ;
+  owl:disjointWith bpo:Interval ;
+  owl:disjointWith bpo:List2D ;
 .
 bpo:Component
   rdf:type owl:Class ;
@@ -181,6 +185,9 @@ An entity can only refer to one component."""@en ;
       owl:onProperty bpo:realisesObject ;
     ] ;
   owl:disjointWith bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Entry2D ;
+  owl:disjointWith bpo:Interval ;
+  owl:disjointWith bpo:List2D ;
 .
 bpo:Entry2D
   rdf:type owl:Class ;
@@ -202,6 +209,8 @@ bpo:Entry2D
           ]
         ) ;
     ] ;
+  owl:disjointWith bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Entity ;
   owl:disjointWith bpo:Interval ;
   owl:disjointWith bpo:List2D ;
 .
@@ -215,6 +224,8 @@ bpo:Interval
       owl:minCardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty schema:value ;
     ] ;
+  owl:disjointWith bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Entity ;
   owl:disjointWith bpo:Entry2D ;
   owl:disjointWith bpo:List2D ;
 .
@@ -243,6 +254,8 @@ bpo:List2D
           ]
         ) ;
     ] ;
+  owl:disjointWith bpo:ClassifiedObject ;
+  owl:disjointWith bpo:Entity ;
   owl:disjointWith bpo:Entry2D ;
   owl:disjointWith bpo:Interval ;
 .
@@ -408,13 +421,6 @@ bpo:hasList2D
   rdfs:subPropertyOf schema:value ;
   owl:inverseOf bpo:describesAttribute ;
 .
-bpo:hasMaxValue
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "Property to define a ranged attribute's maximum value."@en ;
-  rdfs:domain bpo:RangedAttribute ;
-  rdfs:label "has maximum value"@en ;
-  rdfs:subPropertyOf schema:maxValue ;
-.
 bpo:hasOutgoingConnection
   rdf:type owl:ObjectProperty ;
   rdfs:comment "Property between an entity and its component connection that is leading downstream. This connection would connect to the entity's output interface (if existing)."@en ;
@@ -493,13 +499,6 @@ bpo:isPartOfList
   rdfs:label "is part of list"@en ;
   rdfs:range bpo:List2D ;
   owl:inverseOf bpo:hasEntry ;
-.
-bpo:minValue
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "Property to define a ranged attributes minimum value."@en ;
-  rdfs:domain bpo:RangedAttribute ;
-  rdfs:label "has minimum value"@en ;
-  rdfs:subPropertyOf schema:minValue ;
 .
 bpo:permittedStepSize
   rdf:type owl:DatatypeProperty ;

@@ -1,0 +1,820 @@
+{
+  "@graph" : [ {
+    "@id" : "_:b13",
+    "@type" : "owl:Restriction",
+    "cardinality" : "1",
+    "onProperty" : "bpo:hasValue1"
+  }, {
+    "@id" : "_:b14",
+    "@type" : "owl:Restriction",
+    "minCardinality" : "2",
+    "onProperty" : "bpo:consistsOf"
+  }, {
+    "@id" : "_:b15",
+    "@type" : "foaf:Person",
+    "name" : "Anna Wagner"
+  }, {
+    "@id" : "_:b16",
+    "@type" : "owl:Restriction",
+    "cardinality" : "1",
+    "onProperty" : "bpo:realisesObject"
+  }, {
+    "@id" : "_:b18",
+    "@type" : "owl:Restriction",
+    "maxCardinality" : "1",
+    "onProperty" : "schema:maxValue"
+  }, {
+    "@id" : "_:b19",
+    "@type" : "foaf:Person",
+    "name" : "Tim Rist"
+  }, {
+    "@id" : "_:b2",
+    "@type" : "owl:Restriction",
+    "maxCardinality" : "1",
+    "onProperty" : "qudt:unit"
+  }, {
+    "@id" : "_:b22",
+    "@type" : "foaf:Person",
+    "name" : "Wendelin Sprenger"
+  }, {
+    "@id" : "_:b23",
+    "@type" : "owl:Restriction",
+    "cardinality" : "1",
+    "onProperty" : "bpo:hasValue2"
+  }, {
+    "@id" : "_:b24",
+    "@type" : "owl:Restriction",
+    "minCardinality" : "1",
+    "onProperty" : "schema:additionalType"
+  }, {
+    "@id" : "_:b25",
+    "@type" : "owl:Restriction",
+    "maxCardinality" : "0",
+    "onProperty" : "bpo:consistsOf"
+  }, {
+    "@id" : "_:b26",
+    "@type" : "owl:Restriction",
+    "minCardinality" : "1",
+    "onProperty" : "schema:value"
+  }, {
+    "@id" : "_:b28",
+    "@type" : "owl:Restriction",
+    "maxCardinality" : "1",
+    "onProperty" : "bpo:permittedStepSize"
+  }, {
+    "@id" : "_:b29",
+    "@type" : "owl:Class",
+    "intersectionOf" : {
+      "@list" : [ "_:b38", "_:b8", "_:b18", "_:b28", "_:b30" ]
+    }
+  }, {
+    "@id" : "_:b3",
+    "@type" : "owl:Restriction",
+    "cardinality" : "1",
+    "onProperty" : "bpo:describesAttributeInSecondColumn"
+  }, {
+    "@id" : "_:b30",
+    "@type" : "owl:Restriction",
+    "maxCardinality" : "1",
+    "onProperty" : "qudt:unit"
+  }, {
+    "@id" : "_:b31",
+    "@type" : "owl:Restriction",
+    "cardinality" : "1",
+    "onProperty" : "bpo:describesAttributeInFirstColumn"
+  }, {
+    "@id" : "_:b32",
+    "@type" : "foaf:Person",
+    "name" : "Laura Kristina Moeller"
+  }, {
+    "@id" : "_:b33",
+    "@type" : "foaf:Person",
+    "name" : "Marouane Boudhaim"
+  }, {
+    "@id" : "_:b36",
+    "@type" : "foaf:Person",
+    "name" : "Tillmann E. Kuhn"
+  }, {
+    "@id" : "_:b37",
+    "@type" : "foaf:Person",
+    "name" : "Johannes Eisenlohr"
+  }, {
+    "@id" : "_:b38",
+    "@type" : "owl:Restriction",
+    "maxCardinality" : "1",
+    "onProperty" : "schema:value"
+  }, {
+    "@id" : "_:b4",
+    "@type" : "owl:Class",
+    "intersectionOf" : {
+      "@list" : [ "_:b13", "_:b23" ]
+    }
+  }, {
+    "@id" : "_:b41",
+    "@type" : "foaf:Person",
+    "name" : "Christian Eller"
+  }, {
+    "@id" : "_:b42",
+    "@type" : "foaf:Person",
+    "name" : "Christoph Maurer"
+  }, {
+    "@id" : "_:b43",
+    "@type" : "foaf:Person",
+    "name" : "Gesa Benndorf"
+  }, {
+    "@id" : "_:b44",
+    "@type" : "owl:Restriction",
+    "cardinality" : "1",
+    "onProperty" : "schema:value"
+  }, {
+    "@id" : "_:b46",
+    "@type" : "owl:Class",
+    "intersectionOf" : {
+      "@list" : [ "_:b31", "_:b3", "_:b47" ]
+    }
+  }, {
+    "@id" : "_:b47",
+    "@type" : "owl:Restriction",
+    "minCardinality" : "1",
+    "onProperty" : "bpo:hasEntry"
+  }, {
+    "@id" : "_:b5",
+    "@type" : "foaf:Person",
+    "name" : "Christian Leifgen"
+  }, {
+    "@id" : "_:b51",
+    "@type" : "owl:Class",
+    "intersectionOf" : {
+      "@list" : [ "_:b44", "_:b2" ]
+    }
+  }, {
+    "@id" : "_:b8",
+    "@type" : "owl:Restriction",
+    "maxCardinality" : "1",
+    "onProperty" : "schema:minValue"
+  }, {
+    "@id" : "https://w3id.org/bpo",
+    "@type" : "owl:Ontology",
+    "contributor" : [ "_:b36", "_:b37", "_:b42", "_:b33", "_:b43", "_:b22", "_:b19" ],
+    "creator" : [ "_:b5", "_:b15", "_:b32", "_:b41" ],
+    "description" : {
+      "@language" : "en",
+      "@value" : "The Building Product Ontology defines concepts to describe (building) products in a schematic way. It provides methods to describe assembly structures and attach properties to any component without restricting their types, as is often the case in template-driven product descriptions. To allow the description of complex properties, it also contains terms for unordered, two-dimensional lists.\r\n\r\nThe BPO's bpo is on the schematic description of product only, not including geometry or material compositions. Therefore, it can be used to describe theoretical product components without geometric representations as well as those with geometric representations without restrictions. For classification purposes, it uses the buildingSMART Data Dictionary (bSDD) by referencing to the terms' bSDD GUID. If geometric descriptions are desired for components, the authors suggest to use the Ontology for Managing Geometry (OMG, https://w3id.org/omg) resp. the File Ontology for Geometry formats (FOG, https://w3id.org/omg).\r\n\r\nThe BPO is based on the SolConPro ontology, which was first presented in:\r\nWagner, A., Moeller, L.K., Leifgen, C., Rueppel, U., (2018). SolConPro: Describing multi-functional building products using semantic web technologies. In: European Conference on Product and Process Modelling, 12-14 September 2018, Copenhagen, Denmark. In: 12 . CRC Press \r\n\r\nThis work is part of the research project Semantic Construction Project Engineering (www.projekt-bpo.de), founded by the German Federal Ministry for Economic Affairs and Energy (BMWi)."
+    },
+    "issued" : "2019-03-02",
+    "license" : "https://creativecommons.org/licenses/by/1.0/",
+    "modified" : "2019-11-04",
+    "title" : {
+      "@language" : "en",
+      "@value" : "Building Product Ontology"
+    },
+    "preferredNamespacePrefix" : "bpo",
+    "preferredNamespaceUri" : "https://w3id.org/bpo#",
+    "priorVersion" : "https://w3id.org/bpo/1-1",
+    "versionIRI" : "https://w3id.org/bpo/1-2",
+    "versionInfo" : "1.2"
+  }, {
+    "@id" : "bpo:Assembly",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "An assembly is the description of a structure that is composed of (at least two) other components, including other assemblies, elements and products. \r\nAn assembly can never be an element as well, however it can be a product."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "assembly"
+    },
+    "subClassOf" : [ "_:b14", "bpo:Component" ],
+    "disjointWith" : "bpo:Element"
+  }, {
+    "@id" : "bpo:Attribute",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Attributes describe components' quantitative and qualitative properties with single point values. Every property holds exactly one value and may be linked to a measurement unit using the QUDT."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "attribute"
+    },
+    "subClassOf" : [ "schema:PropertyValue", "_:b51", "bpo:ClassifiedObject", "seas:Property" ],
+    "disjointWith" : [ "bpo:RangedAttribute", "bpo:Component", "bpo:ComponentConnection" ]
+  }, {
+    "@id" : "bpo:ClassifiedObject",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "The ClassifiedObject class groups all classes that should be classified and poses the restriction that every individual of these classes musts have at least one classification using the schema:additionalType property. The restriction is passed on the other classes via inheritance."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "classified object"
+    },
+    "subClassOf" : "_:b24",
+    "disjointWith" : [ "bpo:List2D", "bpo:Interval", "bpo:Entry2D", "bpo:Entity" ]
+  }, {
+    "@id" : "bpo:Component",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A component represents the description of an object that is part of a product assembly or the product itself. Whenever such an object is modelled, it should ideally be given one of the subclasses of scp:Component to further specialise the object's characteristics. This class is to be understood as an abstract superclass with the purpose of grouping all product assembly relevant classes. \r\nAll components may, but do not need to, hold additional information regarding their geometry and material composition."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "component"
+    },
+    "subClassOf" : "bpo:ClassifiedObject",
+    "disjointWith" : [ "bpo:RangedAttribute", "bpo:ComponentConnection", "bpo:Attribute" ]
+  }, {
+    "@id" : "bpo:ComponentConnection",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A component connection defines a connection between two components in more detail. This connection can contain additional information like the type of the connection (electrical, physical, etc.) or resistances and allows the modelling of more complex connections where multiple entities are connected in the same node."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "component connection"
+    },
+    "subClassOf" : "bpo:ClassifiedObject",
+    "disjointWith" : [ "bpo:RangedAttribute", "bpo:Component", "bpo:Attribute" ]
+  }, {
+    "@id" : "bpo:DynamicEntity",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A dynamic entity represents a (given) number of instances of one component that can be placed dynamically. However, a differentiation between the instances that are summarised in a dynamic entity is not possible: in the perspective of geometry, they have to be transformed identically in form of repetitions; they must have the same component connections, properties and material derivations."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "dynamic entity"
+    },
+    "subClassOf" : "bpo:Entity",
+    "disjointWith" : "bpo:SingularEntity"
+  }, {
+    "@id" : "bpo:Element",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "An element is the description of an object that cannot be or is not composed of other components. Elements do not necessarily have to be non decomposable, since in some cases, objects may be simplified. Since this class does not have any predefined connection towards the element's material, no restriction regarding its material composition is in effect.\r\nAn element can never be an assembly as well, however it can be a product."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "element"
+    },
+    "subClassOf" : [ "_:b25", "bpo:Component" ],
+    "disjointWith" : "bpo:Assembly"
+  }, {
+    "@id" : "bpo:Entity",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Entities represent instances of a specific component that are placed within one assembly. Such an entity can be used to differentiate specific instances of a type from the (more generic) type's description in aspects as geometry (e.g. transformations), component connections, properties, or material structure.\r\nAn entity can only refer to one component."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "entity"
+    },
+    "subClassOf" : "_:b16",
+    "disjointWith" : [ "bpo:List2D", "bpo:Interval", "bpo:Entry2D", "bpo:ClassifiedObject" ]
+  }, {
+    "@id" : "bpo:Entry2D",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A 2D entry is a value-value pair for property values. Besides the values, the resp. attributes that are described in the pair must be known to the entry."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "2D entry"
+    },
+    "subClassOf" : [ "_:b4", "schema:StructuredValue" ],
+    "disjointWith" : [ "bpo:List2D", "bpo:Interval", "bpo:Entity", "bpo:ClassifiedObject" ]
+  }, {
+    "@id" : "bpo:Interval",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "An interval is an intermediate node between a property and its disordered list of possible values. This may be used when the property's value range cannot be described using mininum and maximum values (in combination with step sizes). The interval values should be connected via the schema:value property."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "interval"
+    },
+    "subClassOf" : [ "_:b26", "schema:StructuredValue" ],
+    "disjointWith" : [ "bpo:List2D", "bpo:Entry2D", "bpo:Entity", "bpo:ClassifiedObject" ]
+  }, {
+    "@id" : "bpo:List2D",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A 2D list is an disordered list containing value-value pairs. This can be used to describe properties that are dependent on each other and commonly presented in tables. Besides the 2d entries, the attributes that are described by the list must be known."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "2D list"
+    },
+    "subClassOf" : [ "_:b46", "schema:StructuredValue" ],
+    "disjointWith" : [ "bpo:Interval", "bpo:Entry2D", "bpo:Entity", "bpo:ClassifiedObject" ]
+  }, {
+    "@id" : "bpo:Product",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A product is a description of any item that can be or is offered for sale by vendors or manufacturers. Products can be assembled or modelled as an element. In any case, the product's structure should be clarified by giving the individual the according type (scp:Assembly or scp:Element) as well."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "product"
+    },
+    "subClassOf" : [ "bpo:Component", "schema:ProductModel", "gr:ProductOrServiceModel" ]
+  }, {
+    "@id" : "bpo:RangedAttribute",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Ranged attributes describe components' quantitative and qualitative properties that have value ranges or multiple values. Value ranges can be defines by their minimal or maximal value and step sizes (in case not every value between the min and max is valid). Additionally, a ranged attribute may be linked to one specific value, which could represent the default value for parametric descriptions. The ranged value can also be linked to a measurement unit by using the QUDT."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "ranged attribute"
+    },
+    "subClassOf" : [ "bpo:ClassifiedObject", "seas:Property", "schema:PropertyValue", "_:b29" ],
+    "disjointWith" : [ "bpo:Component", "bpo:Attribute", "bpo:ComponentConnection" ]
+  }, {
+    "@id" : "bpo:SingularEntity",
+    "@type" : "owl:Class",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A singular entity represents one instance of a specific component."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "singular entity"
+    },
+    "subClassOf" : "bpo:Entity",
+    "disjointWith" : "bpo:DynamicEntity"
+  }, {
+    "@id" : "bpo:connectsInputOf",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a component connection and its upstream connected entity. This connection would connect to the entity's input interface (if existing)."
+    },
+    "domain" : "bpo:ComponentConnection",
+    "label" : {
+      "@language" : "en",
+      "@value" : "connects input of"
+    },
+    "range" : "bpo:Entity"
+  }, {
+    "@id" : "bpo:consistsOf",
+    "@type" : [ "owl:TransitiveProperty", "owl:ObjectProperty" ],
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Object property to describe an assembly relation between components. Since an assembly can also contain of other assemblies, the range of this property is defined as component, the superclass of both assemblies and elements in this ontology. It can also be inferred by a chain axiom stating that an assembly consists of any component that is realised by an entity that is connected to the considered assembly ([scp:hasObjectWith,scp:realisesObject]).\r\nAlso, this property is transitive, allowing to easily identify every component that is part of a considered assembly."
+    },
+    "domain" : "bpo:Assembly",
+    "label" : {
+      "@language" : "en",
+      "@value" : "consits of"
+    },
+    "range" : "bpo:Component",
+    "inverseOf" : "bpo:isPartOf",
+    "propertyChainAxiom" : {
+      "@list" : [ "bpo:isComposedOfEntity", "bpo:realisesObject" ]
+    }
+  }, {
+    "@id" : "bpo:describesAttribute",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a 2D unordered list and the attributes that are described by it."
+    },
+    "domain" : "bpo:List2D",
+    "label" : {
+      "@language" : "en",
+      "@value" : "describes attribute"
+    },
+    "range" : "bpo:RangedAttribute"
+  }, {
+    "@id" : "bpo:describesAttributeFirstValue",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a value-value pair and the attribute that is described in its first value. This property can be inferred by its chain axiom that connects any attribute that is described in the value-value pair's list within the first column ([bpo:isPartOfList, bpo:describesAttributeInFirstColumn])"
+    },
+    "domain" : "bpo:Entry2D",
+    "label" : {
+      "@language" : "en",
+      "@value" : "describes attribute at first value"
+    },
+    "range" : "bpo:RangedAttribute",
+    "propertyChainAxiom" : {
+      "@list" : [ "bpo:isPartOfList", "bpo:describesAttributeInFirstColumn" ]
+    }
+  }, {
+    "@id" : "bpo:describesAttributeInFirstColumn",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a 2D unstructured list and the attribute that is represented by the first column/value of the list and its entries. An attribute cannot be described in both the first and second column of a 2D unstructured list."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "described attribute in first column"
+    },
+    "subPropertyOf" : "bpo:describesAttribute",
+    "propertyDisjointWith" : "bpo:describesAttributeInSecondColumn"
+  }, {
+    "@id" : "bpo:describesAttributeInSecondColumn",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a 2D unstructured list and the attribute that is represented by the second column/value of the list and its entries. An attribute cannot be described in both the first and second column of a 2D unstructured list."
+    },
+    "label" : {
+      "@language" : "en",
+      "@value" : "describes attribute in second column"
+    },
+    "subPropertyOf" : "bpo:describesAttribute",
+    "propertyDisjointWith" : "bpo:describesAttributeInFirstColumn"
+  }, {
+    "@id" : "bpo:describesAttributeSecondValue",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a value-value pair and the attribute that is described in its second value. This property can be inferred by its chain axiom that connects any attribute that is described in the value-value pair's list within the second column ([bpo:isPartOfList, bpo:describesAttributeInSecondColumn])"
+    },
+    "domain" : "bpo:Entry2D",
+    "label" : {
+      "@language" : "en",
+      "@value" : "describes attribute at second value"
+    },
+    "range" : "bpo:RangedAttribute",
+    "propertyChainAxiom" : {
+      "@list" : [ "bpo:isPartOfList", "bpo:describesAttributeInSecondColumn" ]
+    }
+  }, {
+    "@id" : "bpo:hasAttribute",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property to connect components to their (ranged) attributes. As both the attribute and the ranged attribute are subclasses of schema:PropertyValue, that class is given as range of this property, though this is theoretically already given by inheritance."
+    },
+    "domain" : "bpo:Component",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has attribute"
+    },
+    "range" : "schema:PropertyValue",
+    "subPropertyOf" : [ "seas:hasProperty", "schema:additionalProperty" ]
+  }, {
+    "@id" : "bpo:hasBSDDGUID",
+    "@type" : "owl:DatatypeProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property to add a classified object's globally unique identifier of the buildingSMART Data Dictionary as string. To translate and read the term, the GUID must be accessed in the bSDD itself (http://bsdd.buildingsmart.org/#concept/search)."
+    },
+    "domain" : "bpo:ClassifiedObject",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has bSDD globally unique identifier"
+    },
+    "range" : "xsd:string",
+    "subPropertyOf" : "schema:additionalType"
+  }, {
+    "@id" : "bpo:hasEntry",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a disordered 2D list and its entry (value-value pair)."
+    },
+    "domain" : "bpo:List2D",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has entry"
+    },
+    "range" : "bpo:Entry2D",
+    "subPropertyOf" : "schema:value"
+  }, {
+    "@id" : "bpo:hasInterval",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a ranged attribute and an interval containing possible values for the attribute."
+    },
+    "domain" : "bpo:RangedAttribute",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has interval"
+    },
+    "range" : "bpo:Interval",
+    "subPropertyOf" : "schema:value"
+  }, {
+    "@id" : "bpo:hasList2D",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a ranged attribute and a 2D disordered list containing possible values of the attribute. This property is defined to be inverse to the bpo:describesAttribute property, which is the superproperty of bpo:describesAttributeInFirstColumn and bpo:describesAttributeInSecondColumn."
+    },
+    "domain" : "bpo:RangedAttribute",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has 2D disordered list"
+    },
+    "range" : "bpo:List2D",
+    "subPropertyOf" : "schema:value",
+    "inverseOf" : "bpo:describesAttribute"
+  }, {
+    "@id" : "bpo:hasOutgoingConnection",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between an entity and its component connection that is leading downstream. This connection would connect to the entity's output interface (if existing)."
+    },
+    "domain" : "bpo:Entity",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has outgoing connection"
+    },
+    "range" : "bpo:ComponentConnection"
+  }, {
+    "@id" : "bpo:hasQuantity",
+    "@type" : "owl:DatatypeProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property to define the quantity of dynamically placed individuals within one dynamic entity. If the product description is linked with the product's geometry description, this property might become redundant and thus should be related to the geometric repetition quantity (e.g. via the omg:isExplicitlyDerivedFrom property)."
+    },
+    "domain" : "bpo:DynamicEntity",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has quantity"
+    },
+    "range" : "xsd:integer"
+  }, {
+    "@id" : "bpo:hasValue1",
+    "@type" : "owl:DatatypeProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A value-value pair's first value."
+    },
+    "domain" : "bpo:Entry2D",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has first value"
+    }
+  }, {
+    "@id" : "bpo:hasValue2",
+    "@type" : "owl:DatatypeProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A value-value pair's second value"
+    },
+    "domain" : "bpo:Entry2D",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has second value"
+    }
+  }, {
+    "@id" : "bpo:isComposedOfEntity",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Object Property between an assembly and an entity that is part of the assembly."
+    },
+    "domain" : "bpo:Assembly",
+    "label" : {
+      "@language" : "en",
+      "@value" : "is composed of entity"
+    },
+    "range" : "bpo:Entity"
+  }, {
+    "@id" : "bpo:isConnectedFrom",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between two entities where the first (subject) entity is downstream of the second (object) entity. This property can be inferred as the inverse property of the bpo:isConnectedTo property.\r\nThe connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections."
+    },
+    "domain" : "bpo:Entity",
+    "label" : {
+      "@language" : "en",
+      "@value" : "is connected from"
+    },
+    "range" : "bpo:Entity",
+    "inverseOf" : "bpo:isConnectedTo"
+  }, {
+    "@id" : "bpo:isConnectedTo",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between two entities where the first (subject) entity is upstream of the second (object) entity. This property can be inferred by its chain axiom that uses every entity as object if the first entity's outgoing component connection connects to the second's input interface ([bpo:hasOutgoingConnection, bpo:connectsInputOf]).\nThe connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections."
+    },
+    "domain" : "bpo:Entity",
+    "label" : {
+      "@language" : "en",
+      "@value" : "is connected to"
+    },
+    "range" : "bpo:Entity",
+    "propertyChainAxiom" : {
+      "@list" : [ "bpo:hasOutgoingConnection", "bpo:connectsInputOf" ]
+    }
+  }, {
+    "@id" : "bpo:isConnectedWith",
+    "@type" : "owl:SymmetricProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between two entities that are connected disorderly. Since this property is symmetric, it cannot hold information about the direction of the connection. \r\nThe connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections."
+    },
+    "domain" : "bpo:Entity",
+    "label" : {
+      "@language" : "en",
+      "@value" : "is connected with"
+    },
+    "range" : "bpo:Entity"
+  }, {
+    "@id" : "bpo:isPartOf",
+    "@type" : [ "owl:TransitiveProperty", "owl:ObjectProperty" ],
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a component and an assembly, where the component is (directly or indirectly) part of the assembly. This property is inverse to the bpo:consistsOf property and transitive. Thus, it also connects components to an assembly that are not directly a part of the assembly, but part of one of its sub(sub,...)assemblies."
+    },
+    "domain" : "bpo:Component",
+    "label" : {
+      "@language" : "en",
+      "@value" : "is part of"
+    },
+    "range" : "bpo:Assembly",
+    "inverseOf" : "bpo:consistsOf"
+  }, {
+    "@id" : "bpo:isPartOfList",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Property between a value-value pair and a list that contains it. This property is inverse of the bpo:hasEntry property."
+    },
+    "domain" : "bpo:Entry2D",
+    "label" : {
+      "@language" : "en",
+      "@value" : "is part of list"
+    },
+    "range" : "bpo:List2D",
+    "inverseOf" : "bpo:hasEntry"
+  }, {
+    "@id" : "bpo:permittedStepSize",
+    "@type" : "owl:DatatypeProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "A ranged attribute's permitted step size to calculate allowed values between the minimum and maximum value by adding / subtracting the step size from the minimum / maximum value. This can be used in cases, where not every value in between min and max is admissible and permitted values are equidistant."
+    },
+    "domain" : "bpo:RangedAttribute",
+    "label" : {
+      "@language" : "en",
+      "@value" : "permitted step size"
+    }
+  }, {
+    "@id" : "bpo:realisesObject",
+    "@type" : "owl:ObjectProperty",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Object property between an entity and a component to define the type (component) of the considered instance (entity)."
+    },
+    "domain" : "bpo:Entity",
+    "label" : {
+      "@language" : "en",
+      "@value" : "realises object"
+    },
+    "range" : "bpo:Component"
+  } ],
+  "@context" : {
+    "rest" : {
+      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+      "@type" : "@id"
+    },
+    "first" : {
+      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+      "@type" : "@id"
+    },
+    "inverseOf" : {
+      "@id" : "http://www.w3.org/2002/07/owl#inverseOf",
+      "@type" : "@id"
+    },
+    "range" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#range",
+      "@type" : "@id"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "domain" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#domain",
+      "@type" : "@id"
+    },
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "onProperty" : {
+      "@id" : "http://www.w3.org/2002/07/owl#onProperty",
+      "@type" : "@id"
+    },
+    "cardinality" : {
+      "@id" : "http://www.w3.org/2002/07/owl#cardinality",
+      "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+    },
+    "propertyDisjointWith" : {
+      "@id" : "http://www.w3.org/2002/07/owl#propertyDisjointWith",
+      "@type" : "@id"
+    },
+    "subPropertyOf" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
+      "@type" : "@id"
+    },
+    "disjointWith" : {
+      "@id" : "http://www.w3.org/2002/07/owl#disjointWith",
+      "@type" : "@id"
+    },
+    "subClassOf" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "@type" : "@id"
+    },
+    "name" : {
+      "@id" : "http://xmlns.com/foaf/0.1/name"
+    },
+    "intersectionOf" : {
+      "@id" : "http://www.w3.org/2002/07/owl#intersectionOf",
+      "@type" : "@id"
+    },
+    "maxCardinality" : {
+      "@id" : "http://www.w3.org/2002/07/owl#maxCardinality",
+      "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+    },
+    "propertyChainAxiom" : {
+      "@id" : "http://www.w3.org/2002/07/owl#propertyChainAxiom",
+      "@type" : "@id"
+    },
+    "minCardinality" : {
+      "@id" : "http://www.w3.org/2002/07/owl#minCardinality",
+      "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+    },
+    "modified" : {
+      "@id" : "http://purl.org/dc/elements/1.1/modified",
+      "@type" : "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "contributor" : {
+      "@id" : "http://purl.org/dc/elements/1.1/contributor",
+      "@type" : "@id"
+    },
+    "license" : {
+      "@id" : "http://purl.org/dc/elements/1.1/license",
+      "@type" : "@id"
+    },
+    "creator" : {
+      "@id" : "http://purl.org/dc/elements/1.1/creator",
+      "@type" : "@id"
+    },
+    "versionIRI" : {
+      "@id" : "http://www.w3.org/2002/07/owl#versionIRI",
+      "@type" : "@id"
+    },
+    "description" : {
+      "@id" : "http://purl.org/dc/elements/1.1/description"
+    },
+    "versionInfo" : {
+      "@id" : "http://www.w3.org/2002/07/owl#versionInfo"
+    },
+    "title" : {
+      "@id" : "http://purl.org/dc/elements/1.1/title"
+    },
+    "priorVersion" : {
+      "@id" : "http://www.w3.org/2002/07/owl#priorVersion",
+      "@type" : "@id"
+    },
+    "preferredNamespacePrefix" : {
+      "@id" : "http://purl.org/vocab/vann/preferredNamespacePrefix"
+    },
+    "issued" : {
+      "@id" : "http://purl.org/dc/elements/1.1/issued",
+      "@type" : "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "preferredNamespaceUri" : {
+      "@id" : "http://purl.org/vocab/vann/preferredNamespaceUri",
+      "@type" : "@id"
+    },
+    "bpo" : "https://w3id.org/bpo#",
+    "cc" : "http://creativecommons.org/ns#",
+    "schema" : "http://schema.org/",
+    "qudt" : "http://qudt.org/schema/qudt#",
+    "owl" : "http://www.w3.org/2002/07/owl#",
+    "dce" : "http://purl.org/dc/elements/1.1/",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "gr" : "http://purl.org/goodrelations/v1#",
+    "seas" : "https://w3id.org/seas/",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xml" : "http://www.w3.org/XML/1998/namespace",
+    "spin" : "http://spinrdf.org/spin#",
+    "dcterms" : "http://purl.org/dc/elements/1.1/",
+    "vann" : "http://purl.org/vocab/vann/",
+    "foaf" : "http://xmlns.com/foaf/0.1/"
+  }
+}

@@ -1,0 +1,370 @@
+{
+    "project": {
+        "title": "BPO - Building Product Ontology",
+        "creator": "Anna Wagner & Uwe Rueppel"
+    },
+    "tabs": [
+        {
+            "title": "0: BPO introduction",
+            "description": "This SPARQL-visualizer demonstrates the functionality of the [Building Product Ontology (BPO)](http://w3id.org/bpo#). It contains a series of tabs grouped in numbered sections:\n1. Modelling and classifiying products\n2. Direct assembly structures\n3. Indirect assembly structures using entities\n4. Modelling connections between components\n5. Adding properties to components\n6. Complex property values - Intervals\n7. Complex property values - unstructured, two-dimensional lists\n\n### Use the built-in triplestore\nThis will work only to visualise the datasets (intro tab of each section) as a graph.\n\nAn external Stardog triplestore is necessary for all other tabs as the their queries either modify the data (SPARQL INSERT / DELETE), need reasoning, or use SPARQL notations that are not supported by the built-in triplestore.\n\n### Use a Stardog triplestore\nMake sure you have a Stardog instance running (defaults to port 5820) with an empty database (let's call it 'test'), so that nothing important can be deleted. Then click the \"Switch to triplestore\" button and type in \"http://localhost:5820\" as endpoint and \"test\" as database. If you haven't changed the username and password they both default to \"admin\".\n\nDo not forget to (re)load the sample dataset in this Stardog database at the beginning of each section, after having deleted all previous sample triples.\n\n### Resources\n* [BPO HTML documentation](http://www.w3id.org/bpo#)\n* [BPO Turtle](http://www.w3id.org/bpo/bpo.ttl)",
+            "textOnly": true
+        },
+        {
+            "title": "-------------------"
+        },
+        {
+            "title": "1: Modelling and classifiying products - intro",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?prod a bpo:Product ;\n\t\tbpo:hasBSDDGUID ?guid ;\n\t\t?p ?o .\n}",
+            "triples": "@prefix bpo: <https://w3id.org/bpo#> .\n@prefix ex: <http://example.org/products#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n\tex:chair rdf:type bpo:Product;\n\t\tbpo:hasBSDDGUID \"3eoaI0WJCHu000025QrE$V\"^^xsd:string .\n\tex:table rdf:type bpo:Product;\n\t\t  bpo:hasBSDDGUID \"2pnG4aqYbBR8V3phJARTgt\"^^xsd:string .",
+            "description": "## Part 1 - Defining products and classifying objects using BPO##\nThis example comprises of two example products - a chair and a table - that are modelled as a bpo:Product and defined by buildingSMART Data Dictionary Identifiers (http://bsdd.buildingsmart.org/). The upcoming sections will briefly demonstrate how product descriptions can be extended using the BPO. If furher guidance is needed, please see the following tabs that will demonstrate these aspects in more detail.\n\nThis part is structured as follows:\n* 1a: Adding product structures\n* 1b: Adding properties\n* 1c:Visualisation of the extended graph\n\nIn between each tab, an intermediate visualisation of the graph that is aimed to explicitly show the newly generated content is added. \n\n**NOTE!** If you plan to go through the following tabs of part 1, you're advised to delete the content of the main graph (\"Wipe graph\") before loading the sample triples. Click on \"Load dataset\" (main graph) after having setup the correct endpoint, database name, username and password of your Stardog instance.\n"
+        },
+        {
+            "title": "1a: Adding product structures",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nINSERT\n{\n\t?prodElement a bpo:Element .\n\t?prodAssembly a bpo:Assembly ;\n\t\tbpo:consistsOf ?elementLeg , ?elementSeat .\n\t?elementLeg a bpo:Element .\n\t?elementSeat a bpo:Element .\n}\nWHERE\n{\n\tBIND(ex:chair AS ?prodAssembly)\n\tBIND(ex:table AS ?prodElement)\n\tBIND(ex:leg AS ?elementLeg)\n\tBIND(ex:seat AS ?elementSeat)\n}",          
+            "triples": "",
+            "description": "## Part 1 - The example products are extended to describe their (simplified) structures##\nThe table is modelled as a `bpo:Element` that cannot be or is not decomposed into more components. Thus, this is the table's full structure. On the other hand, the chair is modelled as a `bpo:Assembly` and contains of two example components (`ex:leg` and `ex:seat`). For this step, the structures are not decomposed in more detail."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE\n{\n\t?prodAssembly a bpo:Product ;\n\t\ta ?assemblyType ;\n\t\tbpo:hasBSDDGUID ?guidAssembly ;\n\t\tbpo:consistsOf ?component .\n\t?component a ?type .\n\t?prodElement a bpo:Product ;\n\t\ta ?elementType ;\n\t\tbpo:hasBSDDGUID ?guidElement .\n}",
+            "triples": "",
+            "description": "## Part 1 - Intermediate Visualisation of the data##\nThe graph with its new entries is shown: two `bpo:Element`s (`ex:leg` and `ex:seat`) are connected to the `ex:chair` product example via the `bpo:consistsOf` (which is now also classified as `bpo:Assembly`). The `ex:table` example product now has an additional type: `bpo:Element`.\n\nFor a more detailed demonstration on how to describe assembly structures, see tabs 2 and 3."
+        },
+        {
+            "title": "1b: Adding properties",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX schema: <http://schema.org/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#> \n\n\t\t\t\nINSERT \n{\n\t?attrChair a bpo:Attribute ;\n\t\tschema:value ?value .\n\t?attrTable a bpo:RangedAttribute ;\n\t\tschema:minValue ?minValue ;\n\t\tschema:maxValue ?maxValue ;\n\t\tschema:value ?defaultValue ;\n\t\tbpo:permittedStepSize ?stepSize .\n\t?prodChair bpo:hasAttribute ?attrChair .\n\t?prodTable bpo:hasAttribute ?attrTable .\n}\nWHERE\n{\n\tBIND(ex:chair AS ?prodChair)\n\tBIND(ex:table AS ?prodTable)\n\tBIND(ex:priceChair AS ?attrChair)\n\tBIND(ex:priceTable AS ?attrTable)\n\tBIND(\"150\"^^xsd:double AS ?value)\n\tBIND(\"100\"^^xsd:double AS ?minValue)\n\tBIND(\"200\"^^xsd:double AS ?maxValue)\n\tBIND(\"20\"^^xsd:double AS ?stepSize)\n\tBIND(\"160\"^^xsd:double AS ?defaultValue)\n}",
+            "triples": "",
+            "description": "## Part 1 - The example products are extended by properties to describe their pricing##\nWhile the pricing for the `ex:chair` is fixed, the pricing of the `ex:table` may range between a maximal and minimal value. Thus, the added properties are of different types: `bpo:Attribute` for the chair's pricing and `bpo:RangedAttribute` for the table's prcing. The latter also contains information about min/max values, step sizes between these limits and its default value (`schema:value`)."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX schema: <http://schema.org/>\n\nCONSTRUCT \nWHERE\n{\n\t?prod a bpo:Product ;\n\t\tbpo:hasAttribute ?attr .\n  \t?attr ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 1 - Intermediate Visualisation of the data##\nThe graph with its new entries is shown: Both products are now linked to properties (one `bpo:RangedAttribute` and one `bpo:Attribute`). Each attribute is populated with common data properties of their respective type: one specific value for `bpo:Attribute` and multiple values for `bpo:RangedAttribute` to describe the exact value range.\n\nFor a more detailed demonstration on how to describe assembly structures, see tabs 2 and 3."
+        },
+        {
+            "title": "1c: Visualisation of extended graph",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX schema: <http://schema.org/>\n\nCONSTRUCT \nWHERE\n{\n\t?s ?p ?o\n}",
+            "triples": "",
+            "description": "## Part 1 - Visualisation of extended graph##\nThis tab shows the entire graph, as it was build within the past tabs, beginning with just two products. The products now are described in more detail regarding their structure and properties. However, this tab mainly serves as an introduction into the following tabs. Thus, more detailed descriptions and demonstrations of the BPO will follow."
+        },
+        {
+            "title": "-------------------"
+        },
+        {
+            "title": "2: Direct assembly structures - intro",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "@prefix bpo: <https://w3id.org/bpo#> .\n@prefix ex: <http://example.org/products#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n\tex:chair rdf:type bpo:Product, bpo:Assembly;\n\t\tbpo:consistsOf ex:leg, ex:seat .\n\tex:leg rdf:type bpo:Element .\n\tex:seat rdf:type bpo:Element .",
+            "description": "## Part 2 - Describing assembly structures using direct relations##\nThis example comprises of one example product (`ex:chair`) that is modelled as a `bpo:Product` and `bpo:Assembly` and consists of two components (`ex:leg` and `ex:seat`). The upcoming tabs of part 2 will demonstrate how assembly structures can be described in more detail using the BPO. This includes:\n\n* 2a: adding `bpo:Component`s to a `bpo:Assembly`\n* 2b: removing connected `bpo:Element`s entirely\n* 2c: query for all components that are part (or subpart) of an assembly **(REASONING)**\n\nIn between each tab, an intermediate visualisation of the graph that is aimed to explicitly show the newly generated content is added.\n\n**NOTE!** If you plan to go through the following tabs of part 1, you're advised to delete the content of the main graph (\"Wipe graph\") before loading the sample triples. Click on \"Load dataset\" (main graph) after having setup the correct endpoint, database name, username and password of your Stardog instance.\n"
+        },
+        {
+            "title": "2a: Adding new components to an assembly",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nINSERT\n{\n\t?product bpo:consistsOf ?assembly, ?element .\n\t?element a bpo:Element .\n\t?assembly a bpo:Assembly ;\n\t\tbpo:consistsOf ?subelementBack, ?subelementHead .\n\t?subelementBack a bpo:Element .\n\t?subelementHead a bpo:Element .\n}\nWHERE\n{\n\tBIND(ex:chair AS ?product) \n\tBIND(ex:armrest AS ?element) \n\tBIND(ex:rest AS ?assembly) \n\tBIND(ex:backrest AS ?subelementBack) \n\tBIND(ex:headrest AS ?subelementHead)   \n}",
+            "triples": "",
+            "description": "## Part 2 - Adding new components to an assembly##\nThe product assembly (`ex:chair`) is supplemented by one `bpo:Element` that represents the chair's armrest (`ex:armrest`) and one `bpo:Assembly` that represents the chair's rest. The rest itself is composed of two `bpo:Element`s for abackrest and a headrest (`ex:backrest` and `ex:headrest`).\n\nSince the `bpo:Component` class is the superclass of both `bpo:Element` and `bpo:Assembly`, all new individuals can be treated as components, as well."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?prod a bpo:Product, ?type ;\n\t\tbpo:consistsOf ex:armrest, ?assembly .\n\t?assembly a bpo:Assembly ;\n\t\tbpo:consistsOf ?subelement .\n\tex:armrest a bpo:Element .\n\t?subelement a bpo:Element .\n}",
+            "triples": "",
+            "description": "## Part 2 - Intermediate visualisation of the data##\nA graph of the newly created entries is shown. Previously defined components are not visualised in this tab in order to visualise a less complex graph and thereby boost understanding."
+        },
+        {
+            "title": "2b: Removing connected elements entirely",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nDELETE\n{\n\t?element a ?type ;\n\t\tbpo:isPartOf ?assembly .\n\t?assembly bpo:consistsOf ?element .\n}\nWHERE\n{\n\tBIND(ex:seat AS ?element) \n\t?assembly a bpo:Assembly ;\n\t\tbpo:consistsOf ?element .\n}",
+            "triples": "",
+            "description": "## Part 2 - Adding new components to an assembly##\nThe product assembly (`ex:chair`) is supplemented by one `bpo:Element` that represents the chair's armrest (`ex:armrest`) and one `bpo:Assembly` that represents the chair's rest. The rest itself is composed of two `bpo:Element`s for abackrest and a headrest (`ex:backrest` and `ex:headrest`).\n\nSince the `bpo:Component` class is the superclass of both `bpo:Element` and `bpo:Assembly`, all new individuals can be treated as components, as well."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 2 - Intermediate visualisation of the data##\nThe entire graph of this example data set after is shown to demonstrate the deletion of the `ex:seat` node."
+        },
+        {
+            "title": "2c: Query for all components that are part (or subpart) of an assembly (REASONING)",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nSELECT ?part \nWHERE \n{\n  \t# Initial query using bpo:consistsOf\n\t?product a bpo:Product ;\n\t\tbpo:consistsOf ?part .\n  \t# Alternative query using bpo:isPartOf\n#\t?product a bpo:Product .\n#  \t?part bpo:isPartOf ?product .\n}",
+            "triples": "",
+            "description": "## Part 2 - Query for all components that are part (or subpart) of an assembly **(REASONING)**##\nThe graph is searched for all components that are part of the example product. If reasoning is deactivated, it will return the three directly connected components, while the same query will return five components if the reasoner is enabled. The reason for this behaviour is the transitive nature of the `bpo:consistsOf` property, which will infer the components of the product's assembly (`ex:rest`) to be part of the product as well.\n\nAdditionally, the `bpo:isPartOf` property between components and their assembly is defined to be inverse to the `bpo:consistsOf` property. Thus, if the alternate query is executed, it should return the same result as the initial query, if the reasoner is activated.\n\n**Note:** To enable reasoning over the presented BPO ontology, a Stardog triplestore must be connected to the SPARQL-visualizer. Additionally, the BPO must be known to the queried database of Stardog. We recommend to upload the [BPO](http://www.w3id.org/bpo/bpo.ttl) as a named graph to the database and enable querying over all graphs in the database's settings."
+        },
+        {
+            "title": "-------------------"
+        },
+        {
+            "title": "3: Indirect assembly structures using entities - intro",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "@prefix bpo: <https://w3id.org/bpo#> .\n@prefix ex: <http://example.org/products#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n\tex:chair rdf:type bpo:Product, bpo:Assembly;\n\t\tbpo:isComposedOfEntity ex:seatSingEnt, ex:backrestSingEnt .\n\tex:seatSingEnt a bpo:SingularEntity ;\n\t\tbpo:realisesObject ex:seat .\n\tex:backrestSingEnt a bpo:SingularEntity ;\n\t\tbpo:realisesObject ex:backrest .\n\tex:seat rdf:type bpo:Element .\n\tex:backrest rdf:type bpo:Element .",
+            "description": "## Part 3 - Indirect assembly structures using entities##\nThis example comprises of one example product (`ex:chair`) that is modelled as a `bpo:Product` and `bpo:Assembly` and consists of two components (`ex:seat` and `ex:backrest`) that are connected to the assembly via the `bpo:Entity`. The upcoming tabs of part 3 will demonstrate how assembly structures can be described with entites in more detail using the BPO. This includes:\n\n* 3a: adding a `bpo:SingularEntity` to a `bpo:Assembly`\n* 3b: adding a `bpo:DynamicEntity` to a `bpo:Assembly`\n* 3c: removing connected `bpo:Element`s entirely\n* 3d: change a `bpo:DynamicEntity' to multiple `bpo:SingularEntity`s\n* 3e: query for all components that are part (or subpart) of an assembly **(REASONING)**\n\nIn between each tab, an intermediate visualisation of the graph that is aimed to explicitly show the newly generated content is added.\n\n**NOTE!** If you plan to go through the following tabs of part 3, you're advised to delete the content of the main graph (\"Wipe graph\") before loading the sample triples. Click on \"Load dataset\" (main graph) after having setup the correct endpoint, database name, username and password of your Stardog instance.\n"
+        },
+        {
+            "title": "3a: Adding new components to an assembly via single entities",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nINSERT\n{\n\t?assembly bpo:isComposedOfEntity ?entity1, ?entity2 .\n\t?element a bpo:Element .\n\t?entity1 a bpo:SingularEntity ;\n\t\tbpo:realisesObject ?element .\n\t?entity2 a bpo:SingularEntity ;\n\t\tbpo:realisesObject ?element .\n}\nWHERE\n{\n\tBIND(ex:chair AS ?assembly) \n\tBIND(ex:armrest AS ?element) \n\tBIND(ex:armrestSingEnt1 AS ?entity1) \n\tBIND(ex:armrestSingEnt2 AS ?entity2) \n}",
+            "triples": "",
+            "description": "## Part 3 - Adding entities and components to an assembly##\nThe product assembly (`ex:chair`) is supplemented by two `bpo:Entity`s that realise the chair's armrests (`ex:armrest`). Since both entities are of the same kind, the armrest is described just once, whereas the entities both link to the same `bpo:Element`. The concept of `bpo:realisesObject` ranges to `bpo:Component` and is thereby also valid in cases where assemblies are composed of other assemblies."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?product a bpo:Product, ?type ;\n\t\tbpo:isComposedOfEntity ?entity .\n  \t?entity a bpo:Entity ;\n\t\tbpo:realisesObject ex:armrest .\n  \tex:armrest ?p ?o .  \t\n}",
+            "triples": "",
+            "description": "## Part 3 - Intermediate visualisation of the data##\nThe newly added part of the graph is shown: Two entites, that are linked from the product and are linking to the armrest element."
+        },
+        {
+            "title": "3b: Adding new components to an assembly via dynamic entities",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nINSERT\n{\n\t?assembly bpo:isComposedOfEntity ?entity .\n\t?element a bpo:Element .\n\t?entity a bpo:DynamicEntity ;\n\t\tbpo:realisesObject ?element ;\n\t\tbpo:hasQuantity ?quantity .\n}\nWHERE\n{\n\tBIND(ex:chair AS ?assembly) \n\tBIND(ex:leg AS ?element) \n\tBIND(ex:legDynEnt AS ?entity) \n\tBIND(\"4\"^^xsd:integer AS ?quantity) \n}",
+            "triples": "",
+            "description": "## Part 3 - Adding new components to an assembly via dynamic entities##\nThe product assembly (`ex:chair`) is now supplemented by one `bpo:DynamicEntity` that realises the chair's legs (`ex:leg`). To define the quantity of legs that are part of the chair, the property `bpo:hasQuantity` is used. "
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?product a bpo:Product, ?type ;\n\t\tbpo:isComposedOfEntity ?entity .\n  \t?entity a bpo:DynamicEntity ;\n\t\tbpo:realisesObject ?component ;\n\t\tbpo:hasQuantity ?quantity .\n  \t?component ?p ?o .  \t\n}",
+            "triples": "",
+            "description": "## Part 3 - Intermediate visualisation of the data##\nThe newly added part of the graph is shown: One dynamic entity connected to the chair and directing to the leg element. The entity also contains information about the quantity of individuals."
+        },
+        {
+            "title": "3c: Removing connected elements entirely",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nDELETE\n{\n\t?assembly bpo:isComposedOfEntity ?entity .\n\t?element ?p ?o .\n\t?entity a bpo:SingularEntity ;\n\t\tbpo:realisesObject ?element .\n}\nWHERE\n{\n\tBIND(ex:backrest AS ?element) \n  \t?entity a bpo:SingularEntity ;\n\t\tbpo:realisesObject ?element .\n  \t?assembly bpo:isComposedOfEntity ?entity .\n}",
+            "triples": "",
+            "description": "## Part 3 - Removing a component entirely##\nThe element `ex:backrest` is removed from the graph. To remove the component in its entirety, its entity (resp. entities) must also be deleted, including all relations."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 3 - Intermediate visualisation of the data##\nThe entire graph of this example data set after is shown to demonstrate the deletion of the `ex:backrest` and `ex:backrestSingEnt` nodes."
+        },
+        {
+            "title": "3d: Changing a dynamic entity to multiple singular entities",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nDELETE{\n  \t?entityDyn a bpo:DynamicEntity ;\n\t\tbpo:realisesObject ?element ;\n\t\tbpo:hasQuantity ?quantity .\n  \t?assembly bpo:isComposedOfEntity ?entityDyn .\n}\nINSERT\n{\n\t?assembly bpo:isComposedOfEntity ?entitySing1, ?entitySing2, ?entitySing3 .\n\t?entitySing1 a bpo:SingularEntity ;\n\t\tbpo:realisesObject ?element .\n\t?entitySing2 a bpo:SingularEntity ;\n\t\tbpo:realisesObject ?element .\n\t?entitySing3 a bpo:SingularEntity ;\n\t\tbpo:realisesObject ?element .\n}\nWHERE\n{\n\tBIND(ex:legDynEnt AS ?entityDyn) \n\tBIND(ex:legSingEnt1 AS ?entitySing1) \n\tBIND(ex:legSingEnt2 AS ?entitySing2) \n\tBIND(ex:legSingEnt3 AS ?entitySing3) \n  \t?entityDyn bpo:realisesObject ?element ;\n\t\tbpo:hasQuantity ?quantity .\n  \t?assembly bpo:isComposedOfEntity ?entityDyn .\n}",
+            "triples": "",
+            "description": "## Part 3 - Changing a dynamic entity into multiple singular entities##\nThe previously added dynamic entity `ex:legDynEnt` is deleted and replaced by three different singular entites that are all linking to the `ex:leg` element and connected to the `ex:chair` product."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?product a bpo:Product, ?type ;\n\t\tbpo:isComposedOfEntity ?entity .\n  \t?entity a bpo:SingularEntity ;\n\t\tbpo:realisesObject ex:leg .\n  \tex:leg ?p ?o .  \t\n}",
+            "triples": "",
+            "description": "## Part 3 - Intermediate visualisation of the data##\nThe changed part of the graph is shown: Instead of one dynamic entity connected to the chair and directing to the leg element, three singular entities are shown. "
+        },
+        {
+            "title": "3e: Query for all components that are part (or subpart) of an assembly (REASONING)",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nSELECT ?part\nWHERE \n{\n\t?product a bpo:Product ;\n\t\tbpo:consistsOf ?part .\n}",
+            "triples": "",
+            "description": "## Part 3 - Query for all components that are part (or subpart) of an assembly **(REASONING)**##\nThe graph is searched for all components that are part of the example product. If reasoning is deactivated, it will return no results, since the `bpo:consistsOf` property has not been used in this example. However, as the `bpo:consistsOf` property is defined as a chain property, the same query returns three results as soon as reasoning is enabled. Because of the additionally transitive nature of the property, the reasoner could also infer this direct link for subelements of any order.\n\n**Note:** To enable reasoning over the presented BPO ontology, a Stardog triplestore must be connected to the SPARQL-visualizer. Additionally, the BPO must be known to the queried database of Stardog. We recommend to upload the [BPO](http://www.w3id.org/bpo/bpo.ttl) as a named graph to the database and enable querying over all graphs in the database's settings."
+        },
+        {
+            "title": "-------------------"
+        },
+        {
+            "title": "4: Modelling connections between components - intro",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "@prefix bpo: <https://w3id.org/bpo#> .\n@prefix ex: <http://example.org/products#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n\tex:powerOutlet a bpo:Entity ;\n\t\tbpo:isConnectedTo ex:lamp ;\n\t\tbpo:hasOutgoingConnection ex:ccOutletFridge .\n\tex:lamp a bpo:Entity ;\n\t\tbpo:isConnectedWith ex:switch .\n\tex:fridge a bpo:Entity .\n\tex:ccOutletFridge a bpo:ComponentConnection ;\n\t\tbpo:connectsInputOf ex:fridge ;\n\t\t# bSDD GUID for 'electric'\n\t\tbpo:hasBSDDGUID \"0LpQrSjI18XQmnD1w58K0w\"^^xsd:string .\n\tex:switch a  bpo:Entity .",
+            "description": "## Part 4 - Modelling connections between components##\nThis example comprises of an example of a small electrical system. To shorten the description and focus on relevant concepts of this topic, each component is only modelled as a `bpo:Entity` (superclass of `bpo:DynamicEntity` and `bpo:SingularEntity`). The initial system consists of one power outlet that is connected to a fridge and a lamp. Both connections are directed, but the connection to the fridge is realised with an intermediate `bpo:ComponentConnection` node to add more information to the connection, i.e. the type of the connection (electric). Additionally, the lamp is connected to a switch with a non-directed (symmetric) property (`bpo:isConnectedWith`).\n\nSince `bpo:isConnectedFrom` property is inverse to the `bpo:isConnectedTo` property, this example will only use the latter property. However, both properties can be used in the same way, in case a connection needs to be modelled upstream.\n\nThe upcoming tabs of part 4 will demonstrate how interconnections of entities can be described in more detail using the BPO. This includes:\n\n* 4a: adding a new entity with an immediate, non-directed connection\n* 4b: adding a new entity with an immediate, directed connection\n* 4c: adding a new multi-level, directed connection\n* 4d: deleting a component connection\n* 4e: query for all entities that are connected to a specific entity **(REASONING)**\n\nIn between each tab, an intermediate visualisation of the graph that is aimed to explicitly show the newly generated content is added.\n\n**NOTE!** If you plan to go through the following tabs of part 4, you're advised to delete the content of the main graph (\"Wipe graph\") before loading the sample triples. Click on \"Load dataset\" (main graph) after having setup the correct endpoint, database name, username and password of your Stardog instance.\n"
+        },
+        {
+            "title": "4a: Adding a new entity with an immediate, non-directed connection",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nINSERT\n{\n\t?entity1 a bpo:Entity ;\n\t\tbpo:isConnectedWith ?entity2 .\n\t?entity2 a bpo:Entity  .\n}\nWHERE\n{\n\tBIND(ex:stopBtn AS ?entity1) \n\tBIND(ex:generator AS ?entity2) \n}",
+            "triples": "",
+            "description": "## Part 4 - Adding a new entity with an immediate, non-directed connection##\nTwo new entites are created (`ex:stopBtn` and `ex:generator`) and connected in a non-directed way. The entities represent a power generator and its stop button. "
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?entity a bpo:Entity ;\n\t\t?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 4 - Intermediate visualisation of the data##\nAn excerpt of the graph is shown. All entities with their direct properties are depicted, including the newly generated `ex:stopBtn` and `ex:generator` with their connection."
+        },
+        {
+            "title": "4b: Adding a new entity with an immediate, directed connection",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nINSERT\n{\n\t?entity1 bpo:isConnectedTo ?entity2 .\n\t?entity2 a bpo:Entity  .\n}\nWHERE\n{\n\tBIND(ex:generator AS ?entity1) \n\tBIND(ex:distrBoard AS ?entity2) \n}",
+            "triples": "",
+            "description": "## Part 4 - Adding a new entity with an immediate, directed connection##\nOne new entity is created (`ex:distrBoard`) and connected to the previously inserted `ex:generator` in a directed way. The new entity represents the distribution board for the electrical system."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?entity a bpo:Entity ;\n\t\t?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 4 - Intermediate visualisation of the data##\nAn excerpt of the graph is shown. All entities with their direct properties are depicted, including the newly generated `ex:distrBoard` and its connection to the `ex:generator`."
+        },
+        {
+            "title": "4c: Adding a new multi-level, directed connection",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nINSERT\n{\n\t?entity1 bpo:hasOutgoingConnection ?connection .\n  \t?connection a bpo:ComponentConnection ;\n\t\tbpo:connectsInputOf ?entity2 ;\n\t\t# bSDD GUID for 'electric'\n\t\tbpo:hasBSDDGUID \"0LpQrSjI18XQmnD1w58K0w\"^^xsd:string .\n}\nWHERE\n{\n\tBIND(ex:distrBoard AS ?entity1) \n\tBIND(ex:powerOutlet AS ?entity2) \n  \tBIND(ex:ccDistrOutlet AS ?connection)\n}",
+            "triples": "",
+            "description": "## Part 4 - Adding a new multi-level, directed connection##\nOne new entity is created (`ex:distrBoard`) and connected to the previously inserted `ex:generator` in a directed way. The new entity represents the distribution board for the electrical system."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?connection a bpo:ComponentConnection ;\n\t\t?p ?o .\n  \t?s ?p1 ?connection .\n}",
+            "triples": "",
+            "description": "## Part 4 - Intermediate visualisation of the data##\nAn excerpt of the graph is shown. All component connections with their incoming and outgoing properties. After the last step, the graph consists of two component connections (the old `ex:ccOutletFridge` and the new `ex:ccDistrOutlet`). Both connections share the same bSDD GUID, as they are both electrical connections. Moreover, by following their incoming and outgoing properties, a one-directional connection from the distribution board to the fridge is visible."
+        },
+        {
+            "title": "4d:Deleting a component connection",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nDELETE\n{\n\t?connection ?p1 ?o .\n  \t?s ?p ?connection .\n}\nWHERE\n{\n  \tBIND(ex:ccOutletFridge AS ?connection)\n  \t?s ?p ?connection .\n  \t?connection ?p1 ?o .\n}",
+            "triples": "",
+            "description": "## Part 4 - Deleting a component connection##\nThe initial component connection (`ex:ccOutletFridge`) is deleted. When deleting a component connection, it is important to also remove all triples where the component connection was used as object (e.g. the `bpo:hasOutgoingConnection` property)."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?connection a bpo:ComponentConnection ;\n\t\t?p ?o .\n  \t?s ?p1 ?connection .\n}",
+            "triples": "",
+            "description": "## Part 4 - Intermediate visualisation of the data##\nAn excerpt of the graph is shown. All component connections with their incoming and outgoing properties. After the last step, the graph consists of only the new component connection (`ex:ccDistrOutlet`), since the initial one was deleted."
+        },
+        {
+            "title": "4e: Query for all entities that are connected to a specific entity (REASONING)",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT\nWHERE \n{\n\t#?entity1 bpo:isConnectedTo ?entity2 .\n  \t# Alternative - using bpo:isConnectedFrom\n  \t?entity1 bpo:isConnectedFrom ?entity2 .\n}",
+            "triples": "",
+            "description": "## Part 3 - Query for all entities that are connected to a specific entity **(REASONING)**##\nA subgraph is created, containing of all entities that are directly connected via the `bpo:isConnectedTo` property. If reasoning is disabled, two triples are shown that represent the connection between the power outlet and the lamp and the generator and the distribution board. However, no connection between those triples is shown. If reasoning is turned on, an additional triple, describing the connection from the distribution board to the power outlet, is shown. Thus, a continuous connection from the generator to the lamp can be seen.\n\nAlternatively, one could also use the `bpo:isConnectedFrom` property that is inverse to the `bpo:isConnectedTo` property. In this case, nothing will be shown if the reasoner is disabled, but the same (but mirrored) result is returned if it is enabled.\n\n**Note:** To enable reasoning over the presented BPO ontology, a Stardog triplestore must be connected to the SPARQL-visualizer. Additionally, the BPO must be known to the queried database of Stardog. We recommend to upload the [BPO](http://www.w3id.org/bpo/bpo.ttl) as a named graph to the database and enable querying over all graphs in the database's settings."
+        },
+        {
+            "title": "-------------------"
+        },
+        {
+            "title": "5: Adding properties to components",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "@prefix bpo: <https://w3id.org/bpo#> .\n@prefix ex: <http://example.org/products#> .\n@prefix qudt: <http://qudt.org/1.1/schema/qudt> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix schema: <http://schema.org/> .\n@prefix unit: <http://qudt.org/1.1/vocab/unit> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n\tex:leg a bpo:Element ;\n\t\tbpo:hasAttribute ex:height, ex:colour .\n\tex:height a bpo:RangedAttribute ;\n\t\tschema:minValue \"45.0\"^^xsd:double ;\n\t\tschema:maxValue \"80.0\"^^xsd:double ;\n\t\tbpo:permittedStepSize \"25.0\"^^xsd:double ;\n\t\tschema:value \"45.0\"^^xsd:double ;\n\t\tqudt:unit unit:Centimeter .\n\tex:colour a bpo:Attribute ;\n\t\tschema:value \"black\"^^xsd:string .",
+            "description": "## Part 5 - Adding properties to components##\nFor this part, the chair example will be re-used. The initial data set includes the `ex:leg` component and two properties of it: `ex:height` and `ex:colour`. \n\nThe height attribute has the type `bpo:RangedAttribute`, meaning that it does not have one specific value but a range of values. In this specific case, the upper limit for the value is 80 cm (the unit is defined by the `unit:` vocabulary and related via the `qudt:unit` property) and the lower limit 45 cm. The property also defines the permitted step size of allowed values to be 25 cm, thereby restricting the allowed values exactly to the minimal and the maximal value. Additionally, it defines 45 cm using the `schema:value` property, which leads to this being the property's default value.\n\nThe colour on the other hand is a simple `bpo:Attribute` and only holds one value and no unit. \n\nHowever, both properties would be supplemented by a bSDD GUID (`bpo:hasBSDDGUID`) to classify them in practical use cases (e.g. `09ioQK9trCeQ_4sZ2ftuR$` for height and `1cu6Cp831FzOi39rDuj9AO` for colour).\n\nThe upcoming tabs of part 5 will demonstrate how properties with simple values and value ranges can be described in more detail using the BPO. This includes:\n\n* 5a: adding a new simple attribute\n* 5b: adding a new ranged attribute\n* 5c: changing a ranged attribute to a simple one\n* 5d: query for all properties of a component with their specific and ranged values\n\nIn between each tab, an intermediate visualisation of the graph that is aimed to explicitly show the newly generated content is added.\n\n**NOTE!** If you plan to go through the following tabs of part 5, you're advised to delete the content of the main graph (\"Wipe graph\") before loading the sample triples. Click on \"Load dataset\" (main graph) after having setup the correct endpoint, database name, username and password of your Stardog instance.\n"
+        },
+        {
+            "title": "5a: Adding a new simple attribute",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX schema: <http://schema.org/>\n\nINSERT\n{\n\t?attribute a bpo:Attribute ;\n\t\tschema:value ?value .\n\t?component bpo:hasAttribute ?attribute  .\n}\nWHERE\n{\n\tBIND(ex:shape AS ?attribute) \n\tBIND(ex:leg AS ?component) \n\tBIND(\"rectangular\"^^xsd:string AS ?value) \n}",
+            "triples": "",
+            "description": "## Part 5 - Adding a new simple attribute##\nA new attribute (`ex:shape`) is created and connected to the `ex:leg` component. The new attribute is of a simple kind (`bpo:Attribute`) and has exactly one value and no unit."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 5 - Intermediate visualisation of the data##\nThe entire graph of this example data set is shown. This includes the new, simple attribute `ex:shape`."
+        },
+        {
+            "title": "5b: Adding a new ranged attribute",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX qudt: <http://qudt.org/1.1/schema/qudt>\nPREFIX schema: <http://schema.org/>\nPREFIX unit: <http://qudt.org/1.1/vocab/unit>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nINSERT\n{\n\t?attribute a bpo:RangedAttribute ;\n\t\tschema:value ?value ;\n\t\tschema:minValue ?minValue ;\n\t\tschema:maxValue ?maxValue ;\n\t\tbpo:permittedStepSize ?stepSize ;\n\t\tqudt:unit ?unit .\n\t?component bpo:hasAttribute ?attribute  .\n}\nWHERE\n{\n\tBIND(ex:width AS ?attribute) \n\tBIND(ex:leg AS ?component) \n\tBIND(unit:Centimeter AS ?unit) \n\tBIND(\"2.5\"^^xsd:double AS ?value) \n\tBIND(\"1.5\"^^xsd:double AS ?minValue) \n\tBIND(\"5\"^^xsd:double AS ?maxValue) \n\tBIND(\"0.5\"^^xsd:double AS ?stepSize) \n}",
+            "triples": "",
+            "description": "## Part 5 - Adding a new ranged attribute##\nA new attribute (`ex:width`) is created and connected to the `ex:leg` component. The new attribute is a `bpo:RangedAttribute` and therefore contains additional information regarding its minimal or maximal value and step size. Since it is a dimensional attribute, it also is related to an unit."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 5 - Intermediate visualisation of the data##\nThe entire graph of this example data set is shown. This includes the new, ranged attribute `ex:width`."
+        },
+        {
+            "title": "5c: Changing a ranged attribute to a simple one",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX qudt: <http://qudt.org/1.1/schema/qudt>\nPREFIX schema: <http://schema.org/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nDELETE\n{\n  \t?attribute a bpo:RangedAttribute ;\n\t\tschema:minValue ?minValue ;\n\t\tschema:maxValue ?maxValue ;\n\t\tbpo:permittedStepSize ?stepSize .\n}\nINSERT\n{\n\t?attribute a bpo:Attribute .  \n}\nWHERE\n{\n\tBIND(ex:height AS ?attribute) \n  \t?attribute schema:minValue ?minValue ;\n\t\tschema:maxValue ?maxValue ;\n\t\tbpo:permittedStepSize ?stepSize .\n}",
+            "triples": "",
+            "description": "## Part 5 - Changing a ranged attribute to a simple one##\nThe initially ranged attribute `ex:height` is changed to a simple attribute in this step, keeping only its originally default value. To achieve this, all properties describing min/max values and step sizes are deleted as well as the attribute's classification as a `bpo:RangedAttribute`, while the new classification as `bpo:Attribtue` is added. The properties for the attribute's value and unit are not changed."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 5 - Intermediate visualisation of the data##\nThe entire graph of this example data set is shown. This also shows the alteration of the attribute `ex:height` which is now a simple `bpo:Attribute` with one single value, while it still uses the same unit."
+        },
+        {
+            "title": "5d: Query for all properties of a component with their specific and ranged values (Complex query)",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT\nWHERE \n{\n\t#?entity1 bpo:isConnectedTo ?entity2 .\n  \t# Alternative - using bpo:isConnectedFrom\n  \t?entity1 bpo:isConnectedFrom ?entity2 .\n}",
+            "triples": "",
+            "description": "## Part 5 - Query for all properties of a component with their specific and ranged values **(Complex query)**##\nA subgraph is created, containing of all entities that are directly connected via the `bpo:isConnectedTo` property. If reasoning is disabled, two triples are shown that represent the connection between the power outlet and the lamp and the generator and the distribution board. However, no connection between those triples is shown. If reasoning is turned on, an additional triple, describing the connection from the distribution board to the power outlet, is shown. Thus, a continuous connection from the generator to the lamp can be seen.\n\nAlternatively, one could also use the `bpo:isConnectedFrom` property that is inverse to the `bpo:isConnectedTo` property. In this case, nothing will be shown if the reasoner is disabled, but the same (but mirrored) result is returned if it is enabled.\n\n**Note:** To enable reasoning over the presented BPO ontology, a Stardog triplestore must be connected to the SPARQL-visualizer. Additionally, the BPO must be known to the queried database of Stardog. We recommend to upload the [BPO](http://www.w3id.org/bpo/bpo.ttl) as a named graph to the database and enable querying over all graphs in the database's settings."
+        },
+        {
+            "title": "5d: Query for all properties of a component with their specific and ranged values (Complex query)",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX qudt: <http://qudt.org/1.1/schema/qudt>\nPREFIX schema: <http://schema.org/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nSELECT ?attribute ?value ?minValue ?maxValue ?stepSize ?unit\nWHERE \n{\n\tBIND(ex:leg AS ?component)\n  \t?component bpo:hasAttribute ?attribute .\n  \tOPTIONAL\n  \t{\n      \t?attribute schema:value ?value .\n\t}\n  \tOPTIONAL\n  \t{\n      \t?attribute schema:minValue ?minValue ;\n\t\t\tschema:maxValue ?maxValue .\n\t}\n  \tOPTIONAL\n  \t{\n      \t?attribute bpo:permittedStepSize ?stepSize .\n\t}\n  \tOPTIONAL\n  \t{\n      \t?attribute qudt:unit ?unit .\n\t}\n}",
+            "triples": "",
+            "description": "## Part 5 - Query for all properties of a component with their specific and ranged values **(Complex query)**##\nThe graph is queried for any attributes that are connected to a given component (`ex:leg`). By defining all further properties of the attributes as optional, all attributes are returned with as much detail as available. "
+        },
+        {
+            "title": "-------------------"
+        },
+        {
+            "title": "6: Complex property values - Intervals",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "@prefix bpo: <https://w3id.org/bpo#> .\n@prefix ex: <http://example.org/products#> .\n@prefix schema: <http://schema.org/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n\tex:leg a bpo:Element ;\n\t\tbpo:hasAttribute ex:colour .\n\tex:colour a bpo:Attribute ;\n\t\tschema:value ex:colourInterval .\n\tex:colourInterval a bpo:Interval ;\n\t\tschema:value \"black\"^^xsd:string, \"white\"^^xsd:string, \"blue\"^^xsd:string .",
+            "description": "## Part 6 - Complex property values - Intervals##\nFor this part, the chair example will be re-used. The initial data set includes the `ex:leg` component and one property: `ex:colour`. The property does not have one literal value, but a structured value (`bpo:Interval`) that contains several values. This can be used for qualitative properties with more than one possible value.\n\nThe upcoming tabs of part 6 will demonstrate how such intervals can be handled in more detail using the BPO. This includes:\n\n* 6a: adding a new attribute with interval values\n* 6b: deleting an entire interval \n\nIn between each tab, an intermediate visualisation of the graph that is aimed to explicitly show the newly generated content is added.\n\n**NOTE!** If you plan to go through the following tabs of part 6, you're advised to delete the content of the main graph (\"Wipe graph\") before loading the sample triples. Click on \"Load dataset\" (main graph) after having setup the correct endpoint, database name, username and password of your Stardog instance.\n"
+        },
+        {
+            "title": "6a: Adding a new attribute with interval values",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX schema: <http://schema.org/>\n\nINSERT\n{\n\t?attribute a bpo:Attribute ;\n\t\tschema:value ?interval .\n\t?component bpo:hasAttribute ?attribute  .\n  \t?interval a bpo:Interval ;\n\t\tschema:value ?value1 ;\n\t\tschema:value ?value2 ;\n\t\tschema:value ?value3 .\n}\nWHERE\n{\n\tBIND(ex:shape AS ?attribute)\n  \tBIND(ex:shapeInterval AS ?interval)\n\tBIND(ex:leg AS ?component) \n\tBIND(\"rectangular\"^^xsd:string AS ?value1) \n\tBIND(\"circular\"^^xsd:string AS ?value2) \n\tBIND(\"square\"^^xsd:string AS ?value3)  \n}",
+            "triples": "",
+            "description": "## Part 6 - Adding a new attribute with interval values##\nA new attribute (`ex:shape`) is created and connected to the `ex:leg` component. The new attribute has a list of values contained within an `bpo:Interval`."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 6 - Intermediate visualisation of the data##\nThe entire graph of this example data set is shown. This also shows the second attribute `ex:shape` with its interval values."
+        },
+        {
+            "title": "6b: Deleting an interval",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX schema: <http://schema.org/>\n\nDELETE\n{\n\t?attribute schema:value ?interval .\n\t?interval a bpo:Interval ;\n\t\tschema:value ?value .\n}\nWHERE\n{\n\tBIND(ex:colour AS ?attribute)\n  \t?attribute schema:value ?interval.\n\t?interval a bpo:Interval;\n\t\tschema:value ?value .\n}",
+            "triples": "",
+            "description": "## Part 6 - Deleting an interval##\nThe initial interval (`ex:colour`) is deleted with all of its values."
+        },
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 6 - Intermediate visualisation of the data##\nThe entire graph of this example data set is shown. This also shows the second attribute `ex:shape` with its interval values."
+        },
+        {
+            "title": "-------------------"
+        },
+        {
+            "title": "7: Complex property values - List2D",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "@prefix bpo: <https://w3id.org/bpo#> .\n@prefix ex: <http://example.org/products#> .\n@prefix qudt: <http://qudt.org/1.1/schema/qudt> .\n@prefix unit: <http://qudt.org/1.1/vocab/unit> .\n\n\tex:leg a bpo:Element ;\n\t\tbpo:hasAttribute ex:width, ex:length .\n\tex:width a bpo:RangedAttribute ;\n\t\tqudt:unit unit:Centimeter .\n\tex:length a bpo:RangedAttribute ;\n\t\tqudt:unit unit:Centimeter .",
+            "description": "## Part 7 - Complex property values - List2D##\nThis part explains how two-dimensional unstructured lists can be described using the BPO. It begins with teh `ex:leg` component and two of its attributes: `ex:width` and `ex:length`. These attributes are modelled within this part as dependent on each other. Thus, they will defined via value-value pairs of them.\n\nThe upcoming tabs of part 7 will demonstrate how these attributes can be described with two-dimensional unstructured lists using the BPO. This includes:\n\n* 7a: creating and adding a two-dimensional unstructured list\n* 7b: creating and adding value-value pairs\n* 7c: querying for an attribute's value **(REASONING)**\n* 7d: deleting value-value pairs\n* 7e: deleting two-dimensional unstructured lists\n\nIn between each tab, an intermediate visualisation of the graph that is aimed to explicitly show the newly generated content is added.\n\n**NOTE!** If you plan to go through the following tabs of part 7, you're advised to delete the content of the main graph (\"Wipe graph\") before loading the sample triples. Click on \"Load dataset\" (main graph) after having setup the correct endpoint, database name, username and password of your Stardog instance.\n"
+        },
+        {
+            "title": "7a: Creating and adding a two-dimensional unstructured list",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nINSERT\n{\n\t?list a bpo:List2D ;\n\t\tbpo:describesAttributeInFirstColumn ?attribute1 ;\n\t\tbpo:describesAttributeInSecondColumn ?attribute2 .\n}\nWHERE\n{\n\tBIND(ex:list AS ?list)\n  \tBIND(ex:width AS ?attribute1)\n\tBIND(ex:length AS ?attribute2) \n}",
+            "triples": "",
+            "description": "## Part 7 - Creating and adding a two-dimensional unstructured list##\nA new two-dimensional, unstructured list (`ex:list`) is created and connected to the `ex:width` and `ex:length` attributes. "
+        },
+        {
+            "title": "-- Intermediate visualisation (opt. REASONING)",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?list a bpo:List2D ;\n\t\t?p ?o .\n  \t#OPTIONAL: Also show all triples with the list as object (requires reasoning)\n  \t?s ?p1 ?list .\n}",
+            "triples": "",
+            "description": "## Part 7 - Intermediate visualisation of the data **(opt. REASONING)**##\nThe graph around the inserted `bpo:List2d` individual is shown. Initially, the visualisation includes just the `ex:list` and the two attributes, each connected by the `bpo:describesAttributeInFirstColumn` resp. `bpo:describesAttributeInSecondColumn` properties.\n\nIf the reasoner is activated at this point, the list will be additionally classified as `schema:StructuredValue` and `owl:Thing`, while the attributes are now both connected via the `bpo:describesAttribute` property, too.\n\nTo see the entire influence of reasoning on the entered data, the optional (initially commented) line of the query can be used to also despict the triples that use `ex:list` as object. This results in additionally showing the attributes being related to the list via the `bpo:hasList2D` and `schema:value` properties (as the first is the subproperty of the second one)."
+        }   ,
+        {
+            "title": "7b: Creating and adding value-value pairs",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nINSERT\n{\n\t?list bpo:hasEntry ?entry1, ?entry2, ?entry3 .\n  \t?entry1 a bpo:Entry2D ;\n\t\tbpo:hasValue1 ?value11 ;\n\t\tbpo:hasValue2 ?value12 .\n  \t?entry2 a bpo:Entry2D ;\n\t\tbpo:hasValue1 ?value21 ;\n\t\tbpo:hasValue2 ?value22 .\n  \t?entry3 a bpo:Entry2D ;\n\t\tbpo:hasValue1 ?value31 ;\n\t\tbpo:hasValue2 ?value32 .\n}\nWHERE\n{\n\tBIND(ex:list AS ?list)\n\tBIND(ex:entry1 AS ?entry1)\n\tBIND(ex:entry2 AS ?entry2)\n\tBIND(ex:entry3 AS ?entry3)\n  \tBIND(\"2.75\"^^xsd:double AS ?value11)\n  \tBIND(\"3\"^^xsd:double AS ?value12)\n  \tBIND(\"1.5\"^^xsd:double AS ?value21)\n  \tBIND(\"2.5\"^^xsd:double AS ?value22)\n  \tBIND(\"4\"^^xsd:double AS ?value31)\n  \tBIND(\"2\"^^xsd:double AS ?value32)\n}",
+            "triples": "",
+            "description": "## Part 7 - Creating and adding value-value pairs##\nValue-value pairs of the width and length attributes are created and added to the two-dimensional unstructured list."
+        },      
+        {
+            "title": "-- Intermediate visualisation (opt. REASONING)",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{  \n  \t?entry a bpo:Entry2D ;\n\t\t?p ?o .\n  \t?s ?p1 ?entry .\n  \n  \t# OPTIONAL: smaller sample set for ex:entry1\n#  \tex:entry1 ?p ?o .\n#  \t?s ?p1 ex:entry1 .\n}",
+            "triples": "",
+            "description": "## Part 7 - Intermediate visualisation of the data **(opt. REASONING)**##\nThe subgraph connected from and to the added entries is shown. This shows the three entries with their values, classification and connection from the `ex:list` via the `bpo:hasEntry` property.\n\nTo see inferred relations from this set, the reasoner can be activated. If so, the graph will become more complex and includes, amongst others, also the `ex:width` and `ex:length` attributes. To get a smaller, more concise graph, an optional query has been added as comment. When the optional query is supposed to be used, the original part of the query (lines 7 - 9) must be either removed or commented.\n\nAs a result of the optional query, only triples containing the specific `ex:entry1` individual will be shown. This gives a better overview of the changes caused by activating the reasoner: The individual is now also classified as `schema:StructuredValue` and `owl:Thing` and the relation towards the list is supplemented by the properties `schema:value` (ranging from list to entry, inferred by subproperty relation) and `bpo:isPartOfList` (ranging from entry to list, inferred as inverse property). Moreover, the entry itself is now related to the attributes that are described within it - including the order of their occurence - by the properties `bpo:describesAttributeFirstValue` resp. `bpo:describesAttributeSecondValue`."
+        },
+        {
+            "title": "7c:  Querying for an attribute's value (REASONING)",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nSELECT ?value\nWHERE \n{  \n  \t# define known parameters: given & searched property and known property value\n  \tBIND(\"2.5\"^^xsd:double as ?givenValue)\n  \tBIND(ex:width as ?givenAttribute)\n  \tBIND(ex:length as ?searchedAttribute)\n    \n    # define the list that contains both the given and searched property and get the property between the list and the searched attribute\n  \t?list bpo:hasEntry ?entry ;\n          bpo:describesAttribute ?givenAttribute, ?searchedAttribute ;\n          ?descrAttribute ?searchedAttribute .\n  \n  \t# define based on the triple between searched attribute and list which value property must be searched and which is given\n  \tBIND(IF(?descrAttribute=bpo:describesAttributeinFirstColumn , bpo:hasValue2, bpo:hasValue1) AS ?pSearched)\n  \tBIND(IF(?p=bpo:hasValue2,bpo:hasValue1,bpo:hasValue2) AS ?pGiven)\n    \n    # define which entry is the relevant one and its searched value\n  \t?entry ?pGiven ?givenValue ;\n    \t?pSearched ?value .\n}",
+            "triples": "",
+            "description": "## Part 7 - Querying for an attribute's value **(REASONING)**##\nThe graph is searched for the leg's length for the case that the width is defined as 2.5 cm. Since this query relies on superproperties, reasoning must be enabled for it to return the result.\n\nAfter the known parameters (known value of given attribute and searched attribute) are defined, a list that describes both entries is defined. This is the part that requires reasoning: As it is unknown whether the searched / given attribute are described in the first or second value, this check is made based on the fact that both properties defining the described attribute of the first or second column have the same superproperty (`bpo:describesAttribute`).\n\nNext, the singular property between the searched attribute and list is evaluated in regards whether the searched value must be reached via `bpo:hasValue1` or `bpo:hasValue2`. Finally, the list's entry that contains the given value for the given attribute is defined together with the searched value that is then retrieved.\n\n**Note:** To enable reasoning over the presented BPO ontology, a Stardog triplestore must be connected to the SPARQL-visualizer. Additionally, the BPO must be known to the queried database of Stardog. We recommend to upload the [BPO](http://www.w3id.org/bpo/bpo.ttl) as a named graph to the database and enable querying over all graphs in the database's settings."
+        },
+		{
+			"title": "7d: Deleting value-value pairs",
+			"query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nDELETE\n{\n  \t# delete all related triples of the unwanted entry\n  \t?entry ?outgoingProperty ?o .\n  \t?s ?incomingProperty ?entry .\n}\nWHERE\n{\n  \t# define known parameters\n  \tBIND(\"3.0\"^^xsd:double as ?knownValue)\n  \tBIND(ex:length as ?knownAttribute)\n  \t\n  \t# define a list that describes the known attribute\n  \t?list ?descrAttr ?knownAttribute ;\n\t\tbpo:hasEntry ?entry .\n  \t\n  \t# define based on the property between the list and the known attribute which value property should be used to find the according entry\n  \tBIND(IF(?descrAttr=bpo:describesAttributeInSecondColumn,bpo:hasValue2,bpo:hasValue1) as ?hasValue)\n  \n  \t# define the according entry and its related triples\n  \t?entry ?hasValue ?knownValue ; \n\t\t?outgoingProperty ?o .\n  \t?s ?incomingProperty ?entry .\n}",
+			"triples": "",
+			"description": "## Part 7 - Deleting value-value pairs##\nIn this step, the list entry with a length value of 3 cm is deleted. To achieve this, first a list that describes the length attribute is defined. Then, based on the relation between the list and the attribute, the correct value property to find the entry with the correct value is determined. Finally, the entry is defined with its related triples, so they can be deleted."
+		},		    
+        {
+            "title": "-- Intermediate visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{  \n  \t?entry a bpo:Entry2D ;\n\t\t?p ?o .\n  \t?s ?p1 ?entry .\n}",
+            "triples": "",
+            "description": "## Part 7 - Intermediate visualisation of the data##\nThe subgraph of all contained entries is shown. It is visible that `ex:entry1` has been deleted in the previous step."
+        },
+		{
+			"title": "7e: Deleting two-dimensional unstructured lists",
+			"query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nDELETE\n{\n  \t# delete all related triples of the unwanted list\n  \t?list ?outgoingPropertyList ?oList .\n  \t?sList ?incomingPropertyList ?list .\n  \t# delete all related triples of the unwanted entry\n  \t?entry ?outgoingPropertyEntry ?oEntry .\n  \t?sEntry ?incomingPropertyEntry ?entry .\n \n}\nWHERE\n{\n  \t# define known parameters\n  \tBIND(ex:length as ?knownAttribute)\n  \t\n  \t# define the list that describes the known attribute and its entries\n  \t?list ?descrAttr ?knownAttribute ;\n\t\tbpo:hasEntry ?entry .\n  \t\n  \t# define all triples containing to the list and its entries\n  \tOPTIONAL{?list ?outgoingPropertyList ?oList .}\n  \tOPTIONAL{?sList ?incomingPropertyList ?list .}\n  \tOPTIONAL{?entry ?outgoingPropertyEntry ?oEntry .}\n  \tOPTIONAL{?sEntry ?incomingPropertyEntry ?entry .}\n}",
+			"triples": "",
+			"description": "## Part 7 - Deleting two-dimensional unstructured lists##\nIn this step, the list that describes the `ex:length` attribute is deleted with all of its triples. Since it is not mandatory for entries and lists to have incoming _and_ outgoing properties at all times, these triples are defined optional."
+		},	    
+        {
+            "title": "-- Final visualisation",
+            "query": "PREFIX bpo: <https://w3id.org/bpo#>\nPREFIX ex: <http://example.org/products#>\n\nCONSTRUCT \nWHERE \n{\n\t?s ?p ?o .\n}",
+            "triples": "",
+            "description": "## Part 7 - Intermediate visualisation of the data##\nThe entire graph is shown again. All list and entry nodes are gone and the graph looks exactly like it did in the intro tab of this section."
+        }
+    ]
+}

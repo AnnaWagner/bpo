@@ -1,0 +1,1372 @@
+<html><h2 id="crossreference" class="list">Cross reference for Building Product Ontology classes, properties and dataproperties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by Building Product Ontology.
+<div id="classes">
+   <h3 id="classes-headline" class="list">Classes</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a>
+      </li>
+      <li>
+         <a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a>
+      </li>
+      <li>
+         <a href="#Assembly" title="https://w3id.org/bpo#Assembly">assembly</a>
+      </li>
+      <li>
+         <a href="#Attribute" title="https://w3id.org/bpo#Attribute">attribute</a>
+      </li>
+      <li>
+         <a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a>
+      </li>
+      <li>
+         <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+      </li>
+      <li>
+         <a href="#ComponentConnection" title="https://w3id.org/bpo#ComponentConnection">component connection</a>
+      </li>
+      <li>
+         <a href="#DynamicEntity" title="https://w3id.org/bpo#DynamicEntity">dynamic entity</a>
+      </li>
+      <li>
+         <a href="#Element" title="https://w3id.org/bpo#Element">element</a>
+      </li>
+      <li>
+         <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+      </li>
+      <li>
+         <a href="#Interval" title="https://w3id.org/bpo#Interval">interval</a>
+      </li>
+      <li>
+         <a href="#Product" title="https://w3id.org/bpo#Product">product</a>
+      </li>
+      <li>
+         <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+      </li>
+      <li>
+         <a href="#SingularEntity" title="https://w3id.org/bpo#SingularEntity">singular entity</a>
+      </li>
+   </ul>
+   <div class="entity" id="Entry2D">
+      <h3>2D entry<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#Entry2D</p>
+      <div class="comment">
+         <span class="markdown">A 2D entry is a value-value pair for property values. Besides the values, the resp. attributes that are described in the pair must be known to the entry.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>         
+         <dd>
+            <span class="dotted" title="http://schema.org/StructuredValue">structured value</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd> 
+		 <dd>(
+            <a href="#hasValue1" title="https://w3id.org/bpo#hasValue1">has first value</a>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">exactly</span> 1) <span class="logic">and</span> (
+            <a href="#hasValue2" title="https://w3id.org/bpo#hasValue2">has second value</a>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">exactly</span> 1)</dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#describesAttributeFirstValue"
+               title="https://w3id.org/bpo#describesAttributeFirstValue">describes attribute at first value</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#describesAttributeSecondValue"
+               title="https://w3id.org/bpo#describesAttributeSecondValue">describes attribute at second value</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#hasValue1" title="https://w3id.org/bpo#hasValue1">has first value</a>
+            <sup class="type-dp" title="data property">dp</sup>, <a href="#hasValue2" title="https://w3id.org/bpo#hasValue2">has second value</a>
+            <sup class="type-dp" title="data property">dp</sup>, <a href="#isPartOfList" title="https://w3id.org/bpo#isPartOfList">is part of list</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#hasEntry" title="https://w3id.org/bpo#hasEntry">has entry</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+			<a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a><sup class="type-c" title="class">c</sup>,
+			<a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a><sup class="type-c" title="class">c</sup>,
+			<a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a><sup class="type-c" title="class">c</sup>,
+            <a href="#Interval" title="https://w3id.org/bpo#Interval">interval</a><sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="List2D">
+      <h3>2D list<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#List2D</p>
+      <div class="comment">
+         <span class="markdown">A 2D list is an disordered list containing value-value pairs. This can be used to describe properties that are dependent on each other and commonly presented in tables. Besides the 2d entries, the attributes that are described by the list must be known.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>         
+         <dd>
+            <span class="dotted" title="http://schema.org/StructuredValue">structured value</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            (<a href="#hasEntry" title="https://w3id.org/bpo#hasEntry">has entry</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">min</span> 1) <span class="logic">and</span> 
+            (<a href="#describesAttributeInFirstColumn"
+               title="https://w3id.org/bpo#describesAttributeInFirstColumn">described attribute in first column</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1) <span class="logic">and</span> 
+            (<a href="#describesAttributeInSecondColumn"
+               title="https://w3id.org/bpo#describesAttributeInSecondColumn">describes attribute in second column</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1)</dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#describesAttribute" title="https://w3id.org/bpo#describesAttribute">describes attribute</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#hasEntry" title="https://w3id.org/bpo#hasEntry">has entry</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#hasList2D" title="https://w3id.org/bpo#hasList2D">has 2D disordered list</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isPartOfList" title="https://w3id.org/bpo#isPartOfList">is part of list</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a><sup class="type-c" title="class">c</sup>,
+			<a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a><sup class="type-c" title="class">c</sup>,
+			<a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a><sup class="type-c" title="class">c</sup>,
+            <a href="#Interval" title="https://w3id.org/bpo#Interval">interval</a><sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Assembly">
+      <h3>assembly<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#Assembly</p>
+      <div class="comment">
+         <span class="markdown">An assembly is the description of a structure that is composed of (at least two) other components, including other assemblies, elements and products. 
+An assembly can never be an element as well, however it can be a product.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#consistsOf" title="https://w3id.org/bpo#consistsOf">consits of</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">min</span> 2</dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#consistsOf" title="https://w3id.org/bpo#consistsOf">consits of</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isComposedOfEntity" title="https://w3id.org/bpo#isComposedOfEntity">is composed of entity</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#isPartOf" title="https://w3id.org/bpo#isPartOf">is part of</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Element" title="https://w3id.org/bpo#Element">element</a><sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Attribute">
+      <h3>attribute<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#Attribute</p>
+      <div class="comment">
+         <span class="markdown">Attributes describe components' quantitative and qualitative properties with single point values. Every property holds exactly one value and may be linked to a measurement unit using the QUDT.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <span class="dotted" title="http://schema.org/PropertyValue">property value</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <span class="dotted" title="https://w3id.org/seas/Property">property</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            (<span class="dotted" title="http://schema.org/value">value</span> 
+			<sup class="type-p" title="property">p</sup>
+            <span class="logic">exactly</span> 1)
+            <span class="logic">and</span> (<span class="dotted" title="http://qudt.org/schema/qudt#unit">unit</span> <sup class="type-op" title="object property">op</sup>
+            <span class="logic">max</span> 1)</dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Component" title="https://w3id.org/bpo#Component">component</a><sup class="type-c" title="class">c</sup>, 
+			<a href="#ComponentConnection" title="https://w3id.org/bpo#ComponentConnection">component connection</a><sup class="type-c" title="class">c</sup>, 
+			<a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a><sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="ClassifiedObject">
+      <h3>classified object<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#ClassifiedObject</p>
+      <div class="comment">
+         <span class="markdown">The ClassifiedObject class groups all classes that should be classified and poses the restriction that every individual of these classes musts have at least one classification using the schema:additionalType property. The restriction is passed on the other classes via inheritance.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <span class="dotted" title="http://schema.org/additionalType">additional type</span>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">min</span> 1</dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Attribute" title="https://w3id.org/bpo#Attribute">attribute</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#ComponentConnection" title="https://w3id.org/bpo#ComponentConnection">component connection</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#hasBSDDGUID" title="https://w3id.org/bpo#hasBSDDGUID">has bSDD globally unique identifier</a>
+            <sup class="type-dp" title="data property">dp</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a><sup class="type-c" title="class">c</sup>,
+			<a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a><sup class="type-c" title="class">c</sup>,
+			<a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a><sup class="type-c" title="class">c</sup>,
+            <a href="#Interval" title="https://w3id.org/bpo#Interval">interval</a><sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Component">
+      <h3>component<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#Component</p>
+      <div class="comment">
+         <span class="markdown">A component represents the description of an object that is part of a product assembly or the product itself. Whenever such an object is modelled, it should ideally be given one of the subclasses of scp:Component to further specialise the object's characteristics. This class is to be understood as an abstract superclass with the purpose of grouping all product assembly relevant classes. 
+All components may, but do not need to, hold additional information regarding their geometry and material composition.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#Assembly" title="https://w3id.org/bpo#Assembly">assembly</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Element" title="https://w3id.org/bpo#Element">element</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Product" title="https://w3id.org/bpo#Product">product</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#hasAttribute" title="https://w3id.org/bpo#hasAttribute">has attribute</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isPartOf" title="https://w3id.org/bpo#isPartOf">is part of</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#consistsOf" title="https://w3id.org/bpo#consistsOf">consits of</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#realisesObject" title="https://w3id.org/bpo#realisesObject">realises object</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Attribute" title="https://w3id.org/bpo#Attribute">attribute</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#ComponentConnection" title="https://w3id.org/bpo#ComponentConnection">component connection</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="ComponentConnection">
+      <h3>component connection<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#ComponentConnection</p>
+      <div class="comment">
+         <span class="markdown">A component connection defines a connection between two components in more detail. This connection can contain additional information like the type of the connection (electrical, physical, etc.) or resistances and allows the modelling of more complex connections where multiple entities are connected in the same node.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#connectsInputOf" title="https://w3id.org/bpo#connectsInputOf">connects input of</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd><dt>is in range of</dt>
+         <dd>
+            <a href="#hasOutgoingConnection" title="https://w3id.org/bpo#hasOutgoingConnection">has outgoing connection</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Attribute" title="https://w3id.org/bpo#Attribute">attribute</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="DynamicEntity">
+      <h3>dynamic entity<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#DynamicEntity</p>
+      <div class="comment">
+         <span class="markdown">A dynamic entity represents a (given) number of instances of one component that can be placed dynamically. However, a differentiation between the instances that are summarised in a dynamic entity is not possible: in the perspective of geometry, they have to be transformed identically in form of repetitions; they must have the same component connections, properties and material derivations.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#SingularEntity" title="https://w3id.org/bpo#SingularEntity">singular entity</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Element">
+      <h3>element<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#Element</p>
+      <div class="comment">
+         <span class="markdown">An element is the description of an object that cannot be or is not composed of other components. Elements do not necessarily have to be non decomposable, since in some cases, objects may be simplified. Since this class does not have any predefined connection towards the element's material, no restriction regarding its material composition is in effect.
+An element can never be an assembly as well, however it can be a product.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#consistsOf" title="https://w3id.org/bpo#consistsOf">consits of</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">max</span> 0</dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Assembly" title="https://w3id.org/bpo#Assembly">assembly</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Entity">
+      <h3>entity<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#Entity</p>
+      <div class="comment">
+         <span class="markdown">Entities represent instances of a specific component that are placed within one assembly. Such an entity can be used to differentiate specific instances of a type from the (more generic) type's description in aspects as geometry (e.g. transformations), component connections, properties, or material structure.
+An entity can only refer to one component.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#realisesObject" title="https://w3id.org/bpo#realisesObject">realises object</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1</dd>
+         <dt>has sub-classes</dt>
+         <dd>
+            <a href="#DynamicEntity" title="https://w3id.org/bpo#DynamicEntity">dynamic entity</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#SingularEntity" title="https://w3id.org/bpo#SingularEntity">singular entity</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in domain of</dt>
+         <dd> <a href="#hasOutgoingConnection" title="https://w3id.org/bpo#hasOutgoingConnection">has outgoing connection</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isConnectedFrom" title="https://w3id.org/bpo#isConnectedFrom">is connected from</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isConnectedTo" title="https://w3id.org/bpo#isConnectedTo">is connected to</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isConnectedWith" title="https://w3id.org/bpo#isConnectedWith">is connected with</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#realisesObject" title="https://w3id.org/bpo#realisesObject">realises object</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#connectsInputOf" title="https://w3id.org/bpo#connectsInputOf">connects input of</a>
+            <sup class="type-op" title="object property">op</sup>,<a href="#isComposedOfEntity" title="https://w3id.org/bpo#isComposedOfEntity">is composed of entity</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isConnectedFrom" title="https://w3id.org/bpo#isConnectedFrom">is connected from</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isConnectedTo" title="https://w3id.org/bpo#isConnectedTo">is connected to</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#isConnectedWith" title="https://w3id.org/bpo#isConnectedWith">is connected with</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a><sup class="type-c" title="class">c</sup>,
+			<a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a><sup class="type-c" title="class">c</sup>,
+			<a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a><sup class="type-c" title="class">c</sup>,
+            <a href="#Interval" title="https://w3id.org/bpo#Interval">interval</a><sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Interval">
+      <h3>interval<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#Interval</p>
+      <div class="comment">
+         <span class="markdown">An interval is an intermediate node between a property and its disordered list of possible values. This may be used when the property's value range cannot be described using mininum and maximum values (in combination with step sizes). The interval values should be connected via the schema:value property.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <span class="dotted" title="http://schema.org/value">value</span><sup class="type-p" title="property">p</sup>
+            <span class="logic">min</span> 1</dd>
+         </dd>         
+         <dd>
+            <span class="dotted" title="http://schema.org/StructuredValue">structured value</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#hasInterval" title="https://w3id.org/bpo#hasInterval">has interval</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a><sup class="type-c" title="class">c</sup>,
+			<a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a><sup class="type-c" title="class">c</sup>,
+			<a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a><sup class="type-c" title="class">c</sup>,
+			<a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a><sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="Product">
+      <h3>product<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#Product</p>
+      <div class="comment">
+         <span class="markdown">A product is a description of any item that can be or is offered for sale by vendors or manufacturers. Products can be assembled or modelled as an element. In any case, the product's structure should be clarified by giving the individual the according type (scp:Assembly or scp:Element) as well.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <span class="dotted"
+                  title="http://purl.org/goodrelations/v1#ProductOrServiceModel">product or service model</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <span class="dotted" title="http://schema.org/ProductModel">product model</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="RangedAttribute">
+      <h3>ranged attribute<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#RangedAttribute</p>
+      <div class="comment">
+         <span class="markdown">Ranged attributes describe components' quantitative and qualitative properties that have value ranges or multiple values. Value ranges can be defines by their minimal or maximal value and step sizes (in case not every value between the min and max is valid). Additionally, a ranged attribute may be linked to one specific value, which could represent the default value for parametric descriptions. The ranged value can also be linked to a measurement unit by using the QUDT.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <span class="dotted" title="http://schema.org/PropertyValue">property value</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <span class="dotted" title="https://w3id.org/seas/Property">property</span>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            (<span class="dotted" title="http://schema.org/value">value</span> <sup class="type-p" title="property">p</sup>
+            <span class="logic">max</span> 1)
+            <sup class="type-c" title="class">c</sup> 
+            <span class="logic">and</span> (<span class="dotted" title="http://qudt.org/schema/qudt#unit">unit</span> <sup class="type-op" title="object property">op</sup>
+            <span class="logic">max</span> 1) <span class="logic">and</span> (<span class="dotted" title="http://schema.org/maxValue">max value</span>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">max</span> 1) <span class="logic">and</span> (<span class="dotted" title="http://schema.org/minValue">min value</span>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">max</span> 1) <span class="logic">and</span> (<a href="#permittedStepSize" title="https://w3id.org/bpo#permittedStepSize">permitted step size</a>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">max</span> 1)</dd>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#hasList2D" title="https://w3id.org/bpo#hasList2D">has 2D disordered list</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#hasInterval" title="https://w3id.org/bpo#hasInterval">has interval</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#hasMaxValue" title="https://w3id.org/bpo#hasMaxValue">has maximum value</a>
+            <sup class="type-dp" title="data property">dp</sup>, <a href="#minValue" title="https://w3id.org/bpo#minValue">has minimum value</a>
+            <sup class="type-dp" title="data property">dp</sup>, <a href="#permittedStepSize" title="https://w3id.org/bpo#permittedStepSize">permitted step size</a>
+            <sup class="type-dp" title="data property">dp</sup>
+         </dd>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#describesAttribute" title="https://w3id.org/bpo#describesAttribute">describes attribute</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#describesAttributeFirstValue"
+               title="https://w3id.org/bpo#describesAttributeFirstValue">describes attribute at first value</a>
+            <sup class="type-op" title="object property">op</sup>, <a href="#describesAttributeSecondValue"
+               title="https://w3id.org/bpo#describesAttributeSecondValue">describes attribute at second value</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#Attribute" title="https://w3id.org/bpo#Attribute">attribute</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+            <sup class="type-c" title="class">c</sup>, <a href="#ComponentConnection" title="https://w3id.org/bpo#ComponentConnection">component connection</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="SingularEntity">
+      <h3>singular entity<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#SingularEntity</p>
+      <div class="comment">
+         <span class="markdown">A singular entity represents one instance of a specific component.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd>
+            <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dt>is disjoint with</dt>
+         <dd>
+            <a href="#DynamicEntity" title="https://w3id.org/bpo#DynamicEntity">dynamic entity</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+      </dl>
+   </div>
+</div><div id="objectproperties">
+   <h3 id="properties" class="list">Object Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#connectsInputOf" title="https://w3id.org/bpo#connectsInputOf">connects input of</a>
+      </li>
+      <li>
+         <a href="#consistsOf" title="https://w3id.org/bpo#consistsOf">consits of</a>
+      </li>
+      <li>
+         <a href="#describesAttribute" title="https://w3id.org/bpo#describesAttribute">describes attribute</a>
+      </li>
+      <li>
+         <a href="#describesAttributeFirstValue"
+            title="https://w3id.org/bpo#describesAttributeFirstValue">describes attribute at first value</a>
+      </li>
+      <li>
+         <a href="#describesAttributeInFirstColumn"
+            title="https://w3id.org/bpo#describesAttributeInFirstColumn">described attribute in first column</a>
+      </li>
+      <li>
+         <a href="#describesAttributeInSecondColumn"
+            title="https://w3id.org/bpo#describesAttributeInSecondColumn">describes attribute in second column</a>
+      </li>
+      <li>
+         <a href="#describesAttributeSecondValue"
+            title="https://w3id.org/bpo#describesAttributeSecondValue">describes attribute at second value</a>
+      </li>
+      <li>
+         <a href="#hasList2D" title="https://w3id.org/bpo#hasList2D">has 2D disordered list</a>
+      </li>
+      <li>
+         <a href="#hasAttribute" title="https://w3id.org/bpo#hasAttribute">has attribute</a>
+      </li>
+      <li>
+         <a href="#hasEntry" title="https://w3id.org/bpo#hasEntry">has entry</a>
+      </li>
+      <li>
+         <a href="#hasInterval" title="https://w3id.org/bpo#hasInterval">has interval</a>
+      </li>
+      <li>
+         <a href="#hasOutgoingConnection" title="https://w3id.org/bpo#hasOutgoingConnection">has outgoing connection</a>
+      </li>
+      <li>
+         <a href="#isComposedOfEntity" title="https://w3id.org/bpo#isComposedOfEntity">is composed of entity</a>
+      </li>
+      <li>
+         <a href="#isConnectedFrom" title="https://w3id.org/bpo#isConnectedFrom">is connected from</a>
+      </li>
+      <li>
+         <a href="#isConnectedTo" title="https://w3id.org/bpo#isConnectedTo">is connected to</a>
+      </li>
+      <li>
+         <a href="#isConnectedWith" title="https://w3id.org/bpo#isConnectedWith">is connected with</a>
+      </li>
+      <li>
+         <a href="#isPartOf" title="https://w3id.org/bpo#isPartOf">is part of</a>
+      </li>
+      <li>
+         <a href="#isPartOfList" title="https://w3id.org/bpo#isPartOfList">is part of list</a>
+      </li>
+      <li>
+         <a href="#realisesObject" title="https://w3id.org/bpo#realisesObject">realises object</a>
+      </li>
+   </ul>
+   <div class="entity" id="connectsInputOf">
+      <h3>connects input of<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#connectsInputOf</p>
+      <div class="comment">
+         <span class="markdown">PProperty between a component connection and its upstream connected entity. This connection would connect to the entity's input interface (if existing)</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#ComponentConnection" title="https://w3id.org/bpo#ComponentConnection">component connection</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="consistsOf">
+      <h3>consits of<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#consistsOf</p>
+      <div class="comment">
+         <span class="markdown">Object property to describe an assembly relation between components. Since an assembly can also contain of other assemblies, the range of this property is defined as component, the superclass of both assemblies and elements in this ontology. It can also be inferred by a chain axiom stating that an assembly consists of any component that is realised by an entity that is connected to the considered assembly ([scp:hasObjectWith,scp:realisesObject]).
+Also, this property is transitive, allowing to easily identify every component that is part of a considered assembly.</span>
+      </div>
+      <div class="description">
+         <p>
+            <strong>has characteristics:</strong> transitive</p>
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Assembly" title="https://w3id.org/bpo#Assembly">assembly</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#isPartOf" title="https://w3id.org/bpo#isPartOf">is part of</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-property chains</dt>
+            <dd>
+               <a href="#isComposedOfEntity" title="https://w3id.org/bpo#isComposedOfEntity">is composed of entity</a>
+               <sup class="type-op" title="object property">op</sup> 
+               <span class="logic">o</span> 
+               <a href="#realisesObject" title="https://w3id.org/bpo#realisesObject">realises object</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="describesAttribute">
+      <h3>describes attribute<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#describesAttribute</p>
+      <div class="comment">
+         <span class="markdown">Property between a 2D unordered list and the attributes that are described by it.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has sub-properties</dt>
+            <dd>
+               <a href="#describesAttributeInFirstColumn"
+                  title="https://w3id.org/bpo#describesAttributeInFirstColumn">described attribute in first column</a>
+               <sup class="type-op" title="object property">op</sup>, <a href="#describesAttributeInSecondColumn"
+                  title="https://w3id.org/bpo#describesAttributeInSecondColumn">describes attribute in second column</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#hasList2D" title="https://w3id.org/bpo#hasList2D">has 2D disordered list</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="describesAttributeFirstValue">
+      <h3>describes attribute at first value<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#describesAttributeFirstValue</p>
+      <div class="comment">
+         <span class="markdown">Property between a value-value pair and the attribute that is described in its first value. This property can be inferred by its chain axiom that connects any attribute that is described in the value-value pair's list within the first column ([bpo:isPartOfList, bpo:describesAttributeInFirstColumn])</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has sub-property chains</dt>
+            <dd>
+               <a href="#isPartOfList" title="https://w3id.org/bpo#isPartOfList">is part of list</a>
+               <sup class="type-op" title="object property">op</sup> 
+               <span class="logic">o</span> 
+               <a href="#describesAttributeInFirstColumn"
+                  title="https://w3id.org/bpo#describesAttributeInFirstColumn">describes attribute in first column</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="describesAttributeInFirstColumn">
+      <h3>describes attribute in first column<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#describesAttributeInFirstColumn</p>
+      <div class="comment">
+         <span class="markdown">Property between a 2D unstructured list and the attribute that is represented by the first column/value of the list and its entries. An attribute cannot be described in both the first and second column of a 2D unstructured list.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#describesAttribute" title="https://w3id.org/bpo#describesAttribute">describes attribute</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="describesAttributeInSecondColumn">
+      <h3>describes attribute in second column<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#describesAttributeInSecondColumn</p>
+      <div class="comment">
+         <span class="markdown">Property between a 2D unstructured list and the attribute that is represented by the second column/value of the list and its entries. An attribute cannot be described in both the first and second column of a 2D unstructured list.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="#describesAttribute" title="https://w3id.org/bpo#describesAttribute">describes attribute</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="describesAttributeSecondValue">
+      <h3>describes attribute at second value<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#describesAttributeSecondValue</p>
+      <div class="comment">
+         <span class="markdown">Property between a value-value pair and the attribute that is described in its second value. This property can be inferred by its chain axiom that connects any attribute that is described in the value-value pair's list within the second column ([bpo:isPartOfList, bpo:describesAttributeInSecondColumn])</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has sub-property chains</dt>
+            <dd>
+               <a href="#isPartOfList" title="https://w3id.org/bpo#isPartOfList">is part of list</a>
+               <sup class="type-op" title="object property">op</sup> 
+               <span class="logic">o</span> 
+               <a href="#describesAttributeInSecondColumn"
+                  title="https://w3id.org/bpo#describesAttributeInSecondColumn">describes attribute in second column</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasList2D">
+      <h3>has 2D disordered list<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasList2D</p>
+      <div class="comment">
+         <span class="markdown">Property between a ranged attribute and a 2D disordered list containing possible values of the attribute. This property is defined to be inverse to the bpo:describesAttribute property, which is the superproperty of bpo:describesAttributeInFirstColumn and bpo:describesAttributeInSecondColumn.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted" title="http://schema.org/value">value</span>
+               <sup class="type-p" title="property">p</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#describesAttribute" title="https://w3id.org/bpo#describesAttribute">describes attribute</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasAttribute">
+      <h3>has attribute<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasAttribute</p>
+      <div class="comment">
+         <span class="markdown">Property to connect components to their (ranged) attributes. As both the attribute and the ranged attribute are subclasses of schema:PropertyValue, that class is given as range of this property, though this is theoretically already given by inheritance.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted" title="http://schema.org/additionalProperty">additional property</span>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dd>
+               <span class="dotted" title="https://w3id.org/seas/hasProperty">has property</span>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <span class="dotted" title="http://schema.org/PropertyValue">property value</span>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasEntry">
+      <h3>has entry<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasEntry</p>
+      <div class="comment">
+         <span class="markdown">Property between a disordered 2D list and its entry (value-value pair).</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted" title="http://schema.org/value">value</span>
+               <sup class="type-p" title="property">p</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#isPartOfList" title="https://w3id.org/bpo#isPartOfList">is part of list</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasInterval">
+      <h3>has interval<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasInterval</p>
+      <div class="comment">
+         <span class="markdown">Property between a ranged attribute and an interval containing possible values for the attribute.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted" title="http://schema.org/value">value</span>
+               <sup class="type-p" title="property">p</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Interval" title="https://w3id.org/bpo#Interval">interval</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasOutgoingConnection">
+      <h3>has outgoing connection<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasOutgoingConnection</p>
+      <div class="comment">
+         <span class="markdown">Property between an entity and its component connection that is leading downstream. This connection would connect to the entity's output interface (if existing).</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#ComponentConnection" title="https://w3id.org/bpo#ComponentConnection">component connection</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="isComposedOfEntity">
+      <h3>is composed of entity<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#isComposedOfEntity</p>
+      <div class="comment">
+         <span class="markdown">Object Property between an assembly and an entity that is part of the assembly.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Assembly" title="https://w3id.org/bpo#Assembly">assembly</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="isConnectedFrom">
+      <h3>is connected from<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#isConnectedFrom</p>
+      <div class="comment">
+         <span class="markdown">Property between two entities where the first (subject) entity is downstream of the second (object) entity. This property can be inferred as the inverse property of the bpo:isConnectedTo property.
+The connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#isConnectedTo" title="https://w3id.org/bpo#isConnectedTo">is connected to</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="isConnectedTo">
+      <h3>is connected to<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#isConnectedTo</p>
+      <div class="comment">
+         <span class="markdown">Property between two entities where the first (subject) entity is upstream of the second (object) entity. This property can be inferred by its chain axiom that uses every entity as object if the first entity's outgoing component connection connects to the second's input interface ([bpo:hasOutgoingConnection, bpo:connectsInputOf]).
+The connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#isConnectedFrom" title="https://w3id.org/bpo#isConnectedFrom">is connected from</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+            <dt>has sub-property chains</dt>
+            <dd>
+               <a href="#hasOutgoingConnection" title="https://w3id.org/bpo#hasOutgoingConnection">has outgoing connection</a>
+               <sup class="type-op" title="object property">op</sup> 
+               <span class="logic">o</span> 
+               <a href="#connectsInputOf" title="https://w3id.org/bpo#connectsInputOf">connects input of</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="isConnectedWith">
+      <h3>is connected with<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#isConnectedWith</p>
+      <div class="comment">
+         <span class="markdown">Property between two entities that are connected disorderly. Since this property is symmetric, it cannot hold information about the direction of the connection. 
+The connection between the two entities can be further defined (e.g. regarding their type, resistance, etc.) using component connections.</span>
+      </div>
+      <div class="description">
+         <p>
+            <strong>has characteristics:</strong> symmetric</p>
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="isPartOf">
+      <h3>is part of<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#isPartOf</p>
+      <div class="comment">
+         <span class="markdown">Property between a component and an assembly, where the component is (directly or indirectly) part of the assembly. This property is inverse to the bpo:consistsOf property and transitive. Thus, it also connects components to an assembly that are not directly a part of the assembly, but part of one of its sub(sub,...)assemblies.</span>
+      </div>
+      <div class="description">
+         <p>
+            <strong>has characteristics:</strong> transitive</p>
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Assembly" title="https://w3id.org/bpo#Assembly">assembly</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#consistsOf" title="https://w3id.org/bpo#consistsOf">consits of</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="isPartOfList">
+      <h3>is part of list<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#isPartOfList</p>
+      <div class="comment">
+         <span class="markdown">Property between a value-value pair and a list that contains it. This property is inverse of the bpo:hasEntry property.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#List2D" title="https://w3id.org/bpo#List2D">2D list</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is inverse of</dt>
+            <dd>
+               <a href="#hasEntry" title="https://w3id.org/bpo#hasEntry">has entry</a>
+               <sup class="type-op" title="object property">op</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="realisesObject">
+      <h3>realises object<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#realisesObject</p>
+      <div class="comment">
+         <span class="markdown">Object property between an entity and a component to define the type (component) of the considered instance (entity).</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entity" title="https://w3id.org/bpo#Entity">entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#Component" title="https://w3id.org/bpo#Component">component</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div><div id="dataproperties">
+   <h3 id="dataproperties-headline" class="list">Data Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#hasBSDDGUID" title="https://w3id.org/bpo#hasBSDDGUID">has bSDD globally unique identifier</a>
+      </li>
+	  <li>
+		 <a href="#hasQuantity" title="https://w3id.org/bpo#hasQuantity">has quantity</a>
+	  </li>
+      <li>
+         <a href="#hasValue1" title="https://w3id.org/bpo#hasValue1">has first value</a>
+      </li>
+      <li>
+         <a href="#hasValue2" title="https://w3id.org/bpo#hasValue2">has second value</a>
+      </li>
+      <li>
+         <a href="#permittedStepSize" title="https://w3id.org/bpo#permittedStepSize">permitted step size</a>
+      </li>
+   </ul>
+   <div class="entity" id="hasBSDDGUID">
+      <h3>has bSDD globally unique identifier<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasBSDDGUID</p>
+      <div class="comment">
+         <span class="markdown">Property to add a classified object's globally unique identifier of the buildingSMART Data Dictionary as string. To translate and read the term, the GUID must be accessed in the bSDD itself (http://bsdd.buildingsmart.org/#concept/search).</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <span class="dotted" title="http://schema.org/additionalType">additional type</span>
+               <sup class="type-dp" title="data property">dp</sup>
+            </dd>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#ClassifiedObject" title="https://w3id.org/bpo#ClassifiedObject">classified object</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <span class="dotted" title="http://www.w3.org/2001/XMLSchema#string">string</span>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasQuantity">
+      <h3>has quantity<sup class="type-op" title="object property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasQuantity</p>
+      <div class="comment">
+         <span class="markdown">Property to define the quantity of dynamically placed individuals within one dynamic entity. If the product description is linked with the product's geometry description, this property might become redundant and thus should be related to the geometric repetition quantity (e.g. via the omg:isExplicitlyDerivedFrom property).</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#DynamicEntity" title="https://w3id.org/bpo#DynamicEntity">dynamic entity</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <span class="dotted" title="http://www.w3.org/2001/XMLSchema#integer">integer</span>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasValue1">
+      <h3>has first value<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasValue1</p>
+      <div class="comment">
+         <span class="markdown">A value-value pair's first value.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="hasValue2">
+      <h3>has second value<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#hasValue2</p>
+      <div class="comment">
+         <span class="markdown">A value-value pair's second value</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#Entry2D" title="https://w3id.org/bpo#Entry2D">2D entry</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="permittedStepSize">
+      <h3>permitted step size<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://w3id.org/bpo#permittedStepSize</p>
+      <div class="comment">
+         <span class="markdown">A ranged attribute's permitted step size to calculate allowed values between the minimum and maximum value by adding / subtracting the step size from the minimum / maximum value. This can be used in cases, where not every value in between min and max is admissible and permitted values are equidistant.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#RangedAttribute" title="https://w3id.org/bpo#RangedAttribute">ranged attribute</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+</div>
+</div>
+</html>

@@ -1,0 +1,64 @@
+<html>
+<h2 id="desc" class="list">Building Product Ontology: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<span class="markdown">
+Following, the functionalities of the ontology are explained in more detail, beginning with modelling assembly structures with BPO. Subsequently, the application of component interconnections and the definition of properties (named <i>attributes</i> to avoid confusion with RDF properties) are shown. Finally, recommendations regarding combining the BPO with other domain ontologies, i.e. geometry descriptions or taxonomies, are shown.
+</span>
+<div>
+<h3 id="assemblyStructure" class="list">Modelling assembly structures</h3>
+<p>The description of assebly structures with BPO relies on three classes and two properties:</p>
+<ul style="list-style-type:none;"> 
+	<li><a href="#Component"><b>Components</b></a>, which serve as an abstract superclass of the following two classes, for ease of querying and enhanced reasoning; </li>
+	<li><a href="#Element"><b>Elements</b></a>, that are components that cannot -- or will not -- be decomposed into further subcomponents and thereby pose as the smallest and most elementar components in this structure;</li>
+	<li><a href="#Assembly"><b>Assemblies</b></a>, for components consitst of at least two sub-components (elements or other assemblies);</li>
+</ul>
+<ul style="list-style-type:none;"> 
+	<li><a href="#consistsOf"><b>consitst of</b></a>, a property to indicate that an assembly consists of the related component(s), for enhanced reasoning, this property is defined to be transitive; </li>
+	<li><a href="#isPartOf"><b>is part of</b></a>, the inverse property of consists of that defines of which assembly a certain component is a part of;</li>
+</ul>
+<p>Furthermore, a class for <a href="#Product">products</a> that is also inheriting from the abstract component class is introduced to indicate which components can be offered as product of the vendor resp. manufacturer. According to the alignment to well-known upper-level ontologies, this class is also a subclass of the <a href="https://schema.org/Product">schema product</a>. An example how a product sturcture could be modelled with these classes is displayed below.</p>
+<div align="center">	
+<img src="assembly.png" alt="Example for modelling product structures with BPO" style="width:600px;">
+    <figcaption>Example for modelling product structures with BPO</figcaption>
+</div>
+<p>In cases, where the composition of an assembly needs to be quantified or defined in more detail, the BPO introduces concepts for reifying the part-whole relationship. The intermediate node is represented by an <a href="#Entity">entity class</a> that serves as an abstract superclass for its specifications, the <a href="#DynamicEntity">dynamic</a> and <a href="#SingularEntity">singular</a> entity. The dynamic entity is designed to represent such component-entities that are of the same kind (realised component) without derivations between multiple entities, which are clustered in one dynamic entity instance. On the other hand, the singular entity represents exactly one instance of one realised component and is fit to describe differences in multiple entities of the same realised component, e.g. serial numbers or interconnections. Apart of these classes, the BPO also provides two new relations to define that an assembly <a href="#isComposedOfEntity">is composed of an entity</a> and that an entity <a href="#realisesObject">realises a component</a>. The relations are enhanced so that the direct relation between an assembly and its components can be inferred from the reified relation by reasoning. An example of these classes and properties is shown below.</p>
+<div align="center">	
+<img src="entity.png" alt="Example for modelling reified product structures with BPO" style="width:300px;">
+    <figcaption>Example for modelling reified product structures with BPO</figcaption>
+</div>
+</div>
+<div>
+<h3 id="connections" class="list">Describing connections between components</h3>
+<p>To describe the interconnections of a product's components, the <a href="#ComponentConnection">component connection</a> class is introduced. The class is complemented by five relations that allow direct relations between interconnected components and reified relations using the component connection class. A visualisation of all possible means to connect two entities is shown in the figure below.</p>
+<ul style="list-style-type:none;"> 
+	<li><a href="#hasOutgoingConnection"><b>has outgoing connection</b></a>, defining the relation between the output of an entity and its component connection; </li>
+	<li><a href="#connectsInputOf"><b>connects input of</b></a>, defining the relation between a component connection and an input of an entity it connects;</li>
+	<li><a href="#isConnectedTo"><b>is connected to</b></a>, a chain property linking two entities directed from the output of the domain entity to the input of the range entity. This property is enhanced with a chain axiom and can be inferred from modelling the reified relation with the previous two relations and a component connection;</li>
+	<li><a href="#isConnectedFrom"><b>is connected from</b></a>, the inverse property of <a href="#isConnectedTo">is connected to</a> that links two interconnected entities directed from the input of the domain entity and the output of the range entity; </li>
+	<li><a href="#isConnectedWith"><b>is connected with</b></a>, defining an undirected interconnection between two components and is thereby defined as a symmetric property;</li>
+</ul>
+<div align="center">	
+<img src="ComponentConnection.png" alt="Example for connecting entities with BPO" style="width:400px;">
+    <figcaption>Example for connecting entities with BPO</figcaption>
+</div>
+</div>
+<div>
+<h3 id="properties" class="list">Attaching attributes to the product description</h3>
+<p>Within the BPO schema, any component, ergo any assembly, element or product, can be described by <a href="#Attribute">attributes with one singular value</a> or <a href="#RangedAttribute">attributes with value ranges, lists or intervals</a>. To align this schema with existing upper-level ontologies, both kinds of attributes are aligned to the <a href="https://schema.org/PropertyValue"> schema.org property value</a> and the <a href="https://ci.mines-stetienne.fr/seas/FeatureOfInterestOntology-1.0#Property">SEAS Feature of Interest property</a>. Moreover, datatype properties of schema.org, and unit definitions of <a href="http://www.qudt.org/release2/qudt-catalog.html">the QUDT catalogue</a> are re-used. In cases where no existing property matched the exact interest of this ontology, new properties were defined and subsequently aligned, if feasible. The <a href="#hasAttribute">has attribute</a> property links a component to its attributes and should serve both the schema.org and SEAS schemes, which is why it is aligned to the <a href="https://schema.org/additionalProperty">schema has additional property</a> property and the <a href="https://w3id.org/seas/hasProperty">SEAS has property</a> property. The <a href="#permittedStepSize">permitted step size</a> property was added independently, since no property to indicate a suitable step size for linear intervals is known to the authors. An overview of possibilities for modelling attributes is given in the figure below.
+</p>
+<div align="center">	
+<img src="attribute.png" alt="Example for describing component attributes with BPO" style="width:600px;">
+    <figcaption>Example for describing component attributes with BPO</figcaption>
+</div>
+<p>Additionally, the BPO provides means to describe unordered one-dimensional (<a href="#Interval">intervals</a>) and two-dimensional (<a href="#List2D">2D list</a>) attribute values. Again, the <a href="https://schema.org/value">schema.org value</a> property is re-used and additional properties supplemented where neccessary. Noticeable properties are the <a href="#describesAttribute">describes attribute</a> (<a href="#describesAttributeInFirstColumn">for the first column</a> or <a href="#describesAttributeInSecondColumn">for the second column</a>) properties and their counterparts on value level, <a href="#describesAttributeFirstValue">describes attribute at first value</a> / <a href="#hasValue1">first value</a> resp. <a href="#describesAttributeSecondValue">describes attribute at second value</a> / <a href="#hasValue2">second value</a>. Since a list 2D is structured as if it had two columns (first and second), whose order is the same for every <a href="#Entry2D">list entry</a>, the definition of the described attributes per column can be used to infer the accordingly described attributes for the values of each list entry. Thus, every entry value can be connected to its relevant attribute as long as the value order is modelled consequently throughout the entire list and according to the column order.</p>
+<div align="center">	
+<img src="listInterval.png" alt="Example for describing complex attribute values with BPO" style="width:600px;">
+    <figcaption>Example for describing complex attribute values with BPO</figcaption>
+</div>
+</div>
+<div>
+<h3 id="combiningBPO" class="list">Combining BPO with other ontologies</h3>
+<p>As an example, the combination of BPO with an (RDF-based) geometry description and a (non-RDF) taxonomy is demonstrated in this section. Before going into detail, it should be understood that the BPO is not complete but aims to serve as a small ontology that can be re-used in various use cases and scenarios. Thus, in accordance with the <a href="https://www.w3.org/TR/ld-bp/">best practices for publishing Linked Data</a>, instead of large ontologies that are trimmed towards one specific use cases, smaller ontologies should be combined, which is the idea behind the BPO as well. Recommendations for combining the BPO with other ontologies are to create meaningful links between ontologies for other domains, or creating more specific subclasses and subproperties from the generic terms and concepts of BPO.</p>
+<p>For combining BPO with geometry descriptions, we suggest to use a unified linking approach, as proposed in the <a href="https://w3id.org/omg">OMG</a> and <a href="https:w3id.org/fog">FOG</a> method. In the original use case of the BPO from the research project SCOPE, the OMG and FOG method was used to connect to an RDF-vocabulary of the Python interface of the OpenCASCADE kernel (<a href="https://w3id.org/occ">the OCC ontology</a>).</p>
+<p>The other example of connecting the BPO to a non-RDF taxonomy was implemented by adding a <a href="#hasBSDDGUID">property</a> to store a globally unique identifier of a <a href="http://bsdd.buildingsmart.org/">buildingSMART Data Dictionary (bSDD)</a> entry. To align the property with upper-level ontologies, it is modelled as the subproperty of the <a href="https://schema.org/additionalType">schema.org additional type</a> property.</p>
+</div>
+</html>
